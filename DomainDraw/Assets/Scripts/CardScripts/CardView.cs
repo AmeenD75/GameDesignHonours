@@ -46,9 +46,7 @@ public class CardView : MonoBehaviour
         Vector3 pos = new(transform.position.x, -2, 0);
         CardViewHoverSystem.Instance.Show(Card, pos);
 
-        Debug.Log("Card hover ENTER: " + name);
-        Debug.Assert(CardViewHoverSystem.Instance != null, "No CardViewHoverSystem in the scene");
-        Debug.Assert(Card != null, "Card is null on hover (Setup not run?)");
+       
     }
 
     public void HoverExit()
