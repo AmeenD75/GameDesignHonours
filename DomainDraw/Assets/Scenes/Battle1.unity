@@ -936,6 +936,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6205380723192099194, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_Name
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 6483382899046981263, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1015,6 +1019,18 @@ PrefabInstance:
     - target: {fileID: 6483382899046981263, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789238277933255869, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_text
+      value: Play Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319673015165538174, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 971339159}
+    - target: {fileID: 7319673015165538174, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConfirmSelectedCard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

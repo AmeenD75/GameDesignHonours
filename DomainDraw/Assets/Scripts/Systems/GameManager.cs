@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public Transform cardSpawnPoint;
 
     private const int HandSize = 3;
+    private CardView selectedCard;
 
     private void Awake()
     {
@@ -92,7 +93,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void TryPlayCard(CardView cardView)
+    //public void TryPlayCard(CardView cardView)
+    //{
+    //    if (gameOver) return;
+
+    //    List<Card> currentHand = GetCurrentHand();
+
+    //    if (!currentHand.Contains(cardView.Card))
+    //        return;
+
+    //    PlayCard(cardView.Card);
+    //}
+
+    public void SelectCard(CardView cardView)
     {
         if (gameOver) return;
 
@@ -101,7 +114,30 @@ public class GameManager : MonoBehaviour
         if (!currentHand.Contains(cardView.Card))
             return;
 
-        PlayCard(cardView.Card);
+        //selectedCard = cardView;
+        if (selectedCard != null)
+            selectedCard.SetSelected(false);
+
+        selectedCard = cardView;
+        selectedCard.SetSelected(true);
+
+
+        Debug.Log("Selected card: " + cardView.Card.Title);
+    }
+
+
+    public void ConfirmSelectedCard()
+    {
+        if (gameOver) return;
+        if (selectedCard == null) return;
+
+        List<Card> currentHand = GetCurrentHand();
+
+        if (!currentHand.Contains(selectedCard.Card))
+            return;
+
+        PlayCard(selectedCard.Card);
+        selectedCard = null;
     }
 
     void PlayCard(Card card)

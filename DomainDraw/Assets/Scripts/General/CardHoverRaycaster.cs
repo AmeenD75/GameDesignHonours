@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public class CardHoverRaycaster : MonoBehaviour
 {
     private CardView current;
+    
 
     void Update()
     {
@@ -43,7 +44,7 @@ public class CardHoverRaycaster : MonoBehaviour
         if (current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             Debug.Log("Clicked card: " + current.Card.Title);
-            GameManager.Instance.TryPlayCard(current);
+            GameManager.Instance.SelectCard(current);
         }
     }
 }
