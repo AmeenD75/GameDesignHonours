@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: Fireball
+  m_Name: Minor Strike
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: Fireball Breath
-  <Description>k__BackingField: Deal 4 damage to target
+  <Title>k__BackingField: Minor Strike
+  <Description>k__BackingField: hit an enemy
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 21300000, guid: 8c4e6759471a8ff429dac798cabf3cf6, type: 3}
-  <DamageToEnemy>k__BackingField: 15
+  <Image>k__BackingField: {fileID: -7841552460602954984, guid: bcbbbc5a6d1223e4a8112ec42ab1d6ee, type: 3}
+  <DamageToEnemy>k__BackingField: 10
   <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: 15
+  <TerrainDamage>k__BackingField: 6
   <SelfDamage>k__BackingField: 0

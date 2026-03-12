@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 public class CardViewCreator : Singleton<CardViewCreator>
@@ -7,9 +6,8 @@ public class CardViewCreator : Singleton<CardViewCreator>
 
     public CardView CreateCardView(Card card, Vector3 position, Quaternion rotation)
     {
-        CardView cardView = Instantiate(cardViewPrefab, position,rotation);
-        cardView.transform.localScale = Vector3.zero;
-        cardView.transform.DOScale(Vector3.one, 0.15f);
+        CardView cardView = Instantiate(cardViewPrefab, position, rotation);
+        cardView.transform.localScale = Vector3.one;
         cardView.Setup(card);
         return cardView;
     }
