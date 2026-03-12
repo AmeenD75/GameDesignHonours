@@ -15,12 +15,20 @@ public class GameManager : MonoBehaviour
     public bool player1Turn = true;
     private bool gameOver = false;
 
+
+    [Header("Pass and Play")]
+    public GameObject turnOverlay;
+    public TMP_Text turnOverlayText;
+    private bool waitingForTurnConfirm = false;
+
     [Header("UI")]
     public TMP_Text player1HPText;
     public TMP_Text player2HPText;
     public TMP_Text turnText;
     public TMP_Text terrainHPText;
     public TMP_Text diceNumText;
+    public TMP_Text player1BlockText;
+    public TMP_Text player2BlockText;
 
     [Header("Decks")]
     public List<CardData> player1Deck = new();
@@ -29,11 +37,19 @@ public class GameManager : MonoBehaviour
     private readonly List<Card> player1Hand = new();
     private readonly List<Card> player2Hand = new();
 
+    public int player1Block = 0;
+    public int player2Block = 0;
+
+    public int player1BlockTurnsRemaining = 0;
+    public int player2BlockTurnsRemaining = 0;
+
+
     [Header("Hand View")]
     public HandView handView;
     public Transform cardSpawnPoint;
 
     private const int HandSize = 3;
+    private CardView selectedCard;
 
     private void Awake()
     {
@@ -50,7 +66,9 @@ public class GameManager : MonoBehaviour
     {
         DrawStartingHands();
         UpdateUI();
-        ShowCurrentPlayerHand();
+
+        waitingForTurnConfirm = true;
+        ShowTurnOverlay();
     }
 
     void DrawStartingHands()
@@ -92,31 +110,68 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void TryPlayCard(CardView cardView)
+    //public void TryPlayCard(CardView cardView)
+    //{
+    //    if (gameOver) return;
+
+    //    List<Card> currentHand = GetCurrentHand();
+
+    //    if (!currentHand.Contains(cardView.Card))
+    //        return;
+
+    //    PlayCard(cardView.Card);
+    //}
+
+    public void SelectCard(CardView cardView)
     {
-        if (gameOver) return;
+        if (gameOver || waitingForTurnConfirm) return;
 
         List<Card> currentHand = GetCurrentHand();
 
         if (!currentHand.Contains(cardView.Card))
             return;
 
-        PlayCard(cardView.Card);
+        //selectedCard = cardView;
+        if (selectedCard != null)
+            selectedCard.SetSelected(false);
+
+        selectedCard = cardView;
+        selectedCard.SetSelected(true);
+
+
+        Debug.Log("Selected card: " + cardView.Card.Title);
+    }
+
+
+    public void ConfirmSelectedCard()
+    {
+        if (gameOver || waitingForTurnConfirm) return;
+        if (selectedCard == null) return;
+
+        List<Card> currentHand = GetCurrentHand();
+
+        if (!currentHand.Contains(selectedCard.Card))
+            return;
+
+        PlayCard(selectedCard.Card);
+        selectedCard = null;
     }
 
     void PlayCard(Card card)
     {
         if (player1Turn)
         {
-            player2HP -= card.DamageToEnemy;
+            ApplyDamage(false, card.DamageToEnemy);
             player1HP += card.HealSelf;
-            player1HP -= card.SelfDamage;
+            ApplyDamage(true, card.SelfDamage);
+            ApplyDefense(true, card.BlockAmount);
         }
         else
         {
-            player1HP -= card.DamageToEnemy;
+            ApplyDamage(true, card.DamageToEnemy);
             player2HP += card.HealSelf;
-            player2HP -= card.SelfDamage;
+            ApplyDamage(false, card.SelfDamage);
+            ApplyDefense(false, card.BlockAmount);
         }
 
         terrainHP -= card.TerrainDamage;
@@ -131,12 +186,15 @@ public class GameManager : MonoBehaviour
 
     public void RollDice()
     {
+
+        if (gameOver || waitingForTurnConfirm) return;
+        Debug.Log("RollDice pressed");
+
         if (gameOver) return;
 
         int roll = Random.Range(1, 7);
         diceNumText.text = "Dice Roll: " + roll;
 
-        // simple risky prototype rule
         if (roll <= 3)
         {
             if (player1Turn) player2HP -= 12;
@@ -152,27 +210,35 @@ public class GameManager : MonoBehaviour
         EndTurn();
     }
 
-    public void Attack()
-    {
-        if (gameOver) return;
+    //public void Attack()
+    //{
+    //    if (gameOver) return;
 
-        if (player1Turn)
-        {
-            player2HP -= 10;
-            terrainHP -= 3;
-        }
-        else
-        {
-            player1HP -= 10;
-            terrainHP -= 3;
-        }
+    //    if (player1Turn)
+    //    {
+    //        player2HP -= 10;
+    //        terrainHP -= 3;
+    //    }
+    //    else
+    //    {
+    //        player1HP -= 10;
+    //        terrainHP -= 3;
+    //    }
 
-        ClampValues();
-        EndTurn();
-    }
+    //    ClampValues();
+    //    EndTurn();
+    //}
 
     void EndTurn()
     {
+
+        if (selectedCard != null)
+        {
+            selectedCard.SetSelected(false);
+            selectedCard = null;
+        }
+
+        DecrementCurrentPlayerDefenseDuration();
         CheckWin();
         if (gameOver)
         {
@@ -183,7 +249,9 @@ public class GameManager : MonoBehaviour
         player1Turn = !player1Turn;
         RefillCurrentHand();
         UpdateUI();
-        ShowCurrentPlayerHand();
+
+        waitingForTurnConfirm = true;
+        ShowTurnOverlay();
     }
 
     void ClampValues()
@@ -195,6 +263,13 @@ public class GameManager : MonoBehaviour
 
     void CheckWin()
     {
+        if (terrainHP <= 0)
+        {
+            gameOver = true;
+            turnText.text = "Terrain Destroyed! It's a Draw!";
+            return;
+        }
+
         if (player1HP <= 0)
         {
             gameOver = true;
@@ -209,19 +284,109 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (terrainHP <= 0)
+    }
+
+    #region Defense and Damage Logic
+    void ApplyDefense(bool forPlayer1, int blockAmount)
+    {
+        if (forPlayer1)
         {
-            gameOver = true;
-            turnText.text = "Terrain Destroyed! It's a Draw!";
-            return;
+            player1Block = blockAmount;
+            player1BlockTurnsRemaining = 2;
+        }
+        else
+        {
+            player2Block = blockAmount;
+            player2BlockTurnsRemaining = 2;
         }
     }
+
+    void ApplyDamage(bool targetPlayer1, int damage)
+    {
+        if (targetPlayer1)
+        {
+            if (player1BlockTurnsRemaining > 0 && player1Block > 0)
+            {
+                if (damage <= player1Block)
+                {
+                    // Full block
+                    player1Block = 0;
+                    player1BlockTurnsRemaining = 0;
+                    return;
+                }
+                else
+                {
+                    // Partial mitigation, then defense expires
+                    damage -= player1Block;
+                    player1Block = 0;
+                    player1BlockTurnsRemaining = 0;
+                }
+            }
+
+            player1HP -= damage;
+        }
+        else
+        {
+            if (player2BlockTurnsRemaining > 0 && player2Block > 0)
+            {
+                if (damage <= player2Block)
+                {
+                    // Full block
+                    player2Block = 0;
+                    player2BlockTurnsRemaining = 0;
+                    return;
+                }
+                else
+                {
+                    // Partial mitigation, then defense expires
+                    damage -= player2Block;
+                    player2Block = 0;
+                    player2BlockTurnsRemaining = 0;
+                }
+            }
+
+            player2HP -= damage;
+        }
+    }
+
+    void DecrementCurrentPlayerDefenseDuration()
+    {
+        if (player1Turn)
+        {
+            if (player1BlockTurnsRemaining > 0)
+            {
+                player1BlockTurnsRemaining--;
+                if (player1BlockTurnsRemaining <= 0)
+                    player1Block = 0;
+            }
+        }
+        else
+        {
+            if (player2BlockTurnsRemaining > 0)
+            {
+                player2BlockTurnsRemaining--;
+                if (player2BlockTurnsRemaining <= 0)
+                    player2Block = 0;
+            }
+        }
+    }
+    #endregion
 
     void UpdateUI()
     {
         player1HPText.text = "Player 1 HP: " + player1HP;
         player2HPText.text = "Player 2 HP: " + player2HP;
         terrainHPText.text = "Terrain HP: " + terrainHP;
+
+        if (player1BlockTurnsRemaining > 0 && player1Block > 0)
+            player1BlockText.text = "Shield: " + player1Block + " (" + player1BlockTurnsRemaining + ")";
+        else
+            player1BlockText.text = "NO SHIELD";
+
+        if (player2BlockTurnsRemaining > 0 && player2Block > 0)
+            player2BlockText.text = "Shield: " + player2Block + " (" + player2BlockTurnsRemaining + ")";
+        else
+            player2BlockText.text = "NO SHIELD";
 
         if (!gameOver)
             turnText.text = player1Turn ? "Player 1 Turn" : "Player 2 Turn";
@@ -239,5 +404,33 @@ public class GameManager : MonoBehaviour
             await System.Threading.Tasks.Task.Yield();
             StartCoroutine(handView.AddCard(view));
         }
+    }
+
+    void ShowTurnOverlay()
+    {
+        if (handView != null)
+            handView.ClearHand();
+
+        if (turnOverlay != null)
+            turnOverlay.SetActive(true);
+
+        if (turnOverlayText != null)
+        {
+            turnOverlayText.text = player1Turn
+                ? "Player 1 Turn\nPass the device"
+                : "Player 2 Turn\nPass the device";
+        }
+    }
+
+    public void ConfirmTurnStart()
+    {
+        if (!waitingForTurnConfirm) return;
+
+        waitingForTurnConfirm = false;
+
+        if (turnOverlay != null)
+            turnOverlay.SetActive(false);
+
+        ShowCurrentPlayerHand();
     }
 }

@@ -40,4 +40,5 @@ public class CardData : ScriptableObject
     [field: SerializeField] public int HealSelf { get; private set; }
     [field: SerializeField] public int TerrainDamage { get; private set; }
     [field: SerializeField] public int SelfDamage { get; private set; }
+    [field: SerializeField] public int BlockAmount { get; private set; }
 }

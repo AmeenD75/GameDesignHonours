@@ -34,6 +34,8 @@ public class Card
     public int TerrainDamage => data.TerrainDamage;
     public int SelfDamage => data.SelfDamage;
 
+    public int BlockAmount => data.BlockAmount;
+
     public Card(CardData data)
     {
         this.data = data;
