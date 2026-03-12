@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
     public bool player1Turn = true;
     private bool gameOver = false;
 
+
+    [Header("Pass and Play")]
+    public GameObject turnOverlay;
+    public TMP_Text turnOverlayText;
+    private bool waitingForTurnConfirm = false;
+
     [Header("UI")]
     public TMP_Text player1HPText;
     public TMP_Text player2HPText;
@@ -51,7 +57,9 @@ public class GameManager : MonoBehaviour
     {
         DrawStartingHands();
         UpdateUI();
-        ShowCurrentPlayerHand();
+
+        waitingForTurnConfirm = true;
+        ShowTurnOverlay();
     }
 
     void DrawStartingHands()
@@ -107,7 +115,7 @@ public class GameManager : MonoBehaviour
 
     public void SelectCard(CardView cardView)
     {
-        if (gameOver) return;
+        if (gameOver || waitingForTurnConfirm) return;
 
         List<Card> currentHand = GetCurrentHand();
 
@@ -128,7 +136,7 @@ public class GameManager : MonoBehaviour
 
     public void ConfirmSelectedCard()
     {
-        if (gameOver) return;
+        if (gameOver || waitingForTurnConfirm) return;
         if (selectedCard == null) return;
 
         List<Card> currentHand = GetCurrentHand();
@@ -167,6 +175,8 @@ public class GameManager : MonoBehaviour
 
     public void RollDice()
     {
+
+        if (gameOver || waitingForTurnConfirm) return;
         Debug.Log("RollDice pressed");
 
         if (gameOver) return;
@@ -189,27 +199,34 @@ public class GameManager : MonoBehaviour
         EndTurn();
     }
 
-    public void Attack()
-    {
-        if (gameOver) return;
+    //public void Attack()
+    //{
+    //    if (gameOver) return;
 
-        if (player1Turn)
-        {
-            player2HP -= 10;
-            terrainHP -= 3;
-        }
-        else
-        {
-            player1HP -= 10;
-            terrainHP -= 3;
-        }
+    //    if (player1Turn)
+    //    {
+    //        player2HP -= 10;
+    //        terrainHP -= 3;
+    //    }
+    //    else
+    //    {
+    //        player1HP -= 10;
+    //        terrainHP -= 3;
+    //    }
 
-        ClampValues();
-        EndTurn();
-    }
+    //    ClampValues();
+    //    EndTurn();
+    //}
 
     void EndTurn()
     {
+
+        if (selectedCard != null)
+        {
+            selectedCard.SetSelected(false);
+            selectedCard = null;
+        }
+
         CheckWin();
         if (gameOver)
         {
@@ -220,7 +237,9 @@ public class GameManager : MonoBehaviour
         player1Turn = !player1Turn;
         RefillCurrentHand();
         UpdateUI();
-        ShowCurrentPlayerHand();
+
+        waitingForTurnConfirm = true;
+        ShowTurnOverlay();
     }
 
     void ClampValues()
@@ -276,5 +295,33 @@ public class GameManager : MonoBehaviour
             await System.Threading.Tasks.Task.Yield();
             StartCoroutine(handView.AddCard(view));
         }
+    }
+
+    void ShowTurnOverlay()
+    {
+        if (handView != null)
+            handView.ClearHand();
+
+        if (turnOverlay != null)
+            turnOverlay.SetActive(true);
+
+        if (turnOverlayText != null)
+        {
+            turnOverlayText.text = player1Turn
+                ? "Player 1 Turn\nPass the device"
+                : "Player 2 Turn\nPass the device";
+        }
+    }
+
+    public void ConfirmTurnStart()
+    {
+        if (!waitingForTurnConfirm) return;
+
+        waitingForTurnConfirm = false;
+
+        if (turnOverlay != null)
+            turnOverlay.SetActive(false);
+
+        ShowCurrentPlayerHand();
     }
 }
