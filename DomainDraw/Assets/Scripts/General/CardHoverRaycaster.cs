@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class CardHoverRaycaster : MonoBehaviour
 {
@@ -8,6 +9,18 @@ public class CardHoverRaycaster : MonoBehaviour
     void Update()
     {
         if (Camera.main == null || Mouse.current == null) return;
+
+
+        // IMPORTANT: ignore clicks if mouse is over UI
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            if (current != null)
+            {
+                current.HoverExit();
+                current = null;
+            }
+            return;
+        }
 
         Vector2 screenPos = Mouse.current.position.ReadValue();
         Vector3 world = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0f));

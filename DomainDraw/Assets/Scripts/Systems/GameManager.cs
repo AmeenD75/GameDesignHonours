@@ -131,12 +131,13 @@ public class GameManager : MonoBehaviour
 
     public void RollDice()
     {
+        Debug.Log("RollDice pressed");
+
         if (gameOver) return;
 
         int roll = Random.Range(1, 7);
         diceNumText.text = "Dice Roll: " + roll;
 
-        // simple risky prototype rule
         if (roll <= 3)
         {
             if (player1Turn) player2HP -= 12;
