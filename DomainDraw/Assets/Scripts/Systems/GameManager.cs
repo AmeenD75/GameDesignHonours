@@ -84,6 +84,13 @@ public class GameManager : MonoBehaviour
     public TMP_Text player1TimerText;
     public TMP_Text player2TimerText;
 
+
+    [Header("Dice Uses")]
+    public int player1DiceUsesRemaining = 3;
+    public int player2DiceUsesRemaining = 3;
+    public TMP_Text player1DiceText;
+    public TMP_Text player2DiceText;
+
     #region Unity Messages
     private void Awake()
     {
@@ -306,11 +313,30 @@ public class GameManager : MonoBehaviour
     {
         if (gameOver || waitingForTurnConfirm) return;
 
-        int roll = Random.Range(1, 7);
-        diceNumText.text = "Dice Roll: " + roll;
+        if (GetCurrentPlayerDiceUsesRemaining() <= 0)
+        {
+            AddBattleLog((player1Turn ? "Player 1" : "Player 2") + " has no dice rolls remaining.");
+            return;
+        }
+
+        if (selectedCard == null)
+        {
+            AddBattleLog((player1Turn ? "Player 1" : "Player 2") + " must select a card to swap before rolling dice.");
+            return;
+        }
 
         string currentPlayerName = player1Turn ? "Player 1" : "Player 2";
         string opponentName = player1Turn ? "Player 2" : "Player 1";
+        string swappedCardName = selectedCard.Card.Title;
+
+        // Swap out selected card first
+        ReplaceSelectedCardInHand();
+        UseCurrentPlayerDiceCharge();
+
+        AddBattleLog(currentPlayerName + " swapped " + swappedCardName + " and rolled the dice.");
+
+        int roll = Random.Range(1, 7);
+        diceNumText.text = "Dice Roll: " + roll;
 
         if (roll <= 3)
         {
@@ -339,6 +365,7 @@ public class GameManager : MonoBehaviour
             }
         }
         ClampValues();
+        UpdateUI();
         EndTurn();
     }
 
@@ -562,6 +589,9 @@ public class GameManager : MonoBehaviour
         else
             player2BlockText.text = "NO SHIELD";
 
+        player1DiceText.text = "Dice: " + player1DiceUsesRemaining;
+        player2DiceText.text = "Dice: " + player2DiceUsesRemaining;
+
         if (!gameOver)
             turnText.text = player1Turn ? "Player 1 Turn" : "Player 2 Turn";
         UpdateTimerUI();
@@ -674,6 +704,40 @@ public class GameManager : MonoBehaviour
         int minutes = totalSeconds / 60;
         int seconds = totalSeconds % 60;
         return minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
+
+    #endregion
+
+
+    #region Dice Management 
+    int GetCurrentPlayerDiceUsesRemaining()
+    {
+        return player1Turn ? player1DiceUsesRemaining : player2DiceUsesRemaining;
+    }
+
+    void UseCurrentPlayerDiceCharge()
+    {
+        if (player1Turn)
+            player1DiceUsesRemaining--;
+        else
+            player2DiceUsesRemaining--;
+    }
+    void ReplaceSelectedCardInHand()
+    {
+        if (selectedCard == null) return;
+
+        List<Card> currentHand = GetCurrentHand();
+
+        if (!currentHand.Contains(selectedCard.Card))
+            return;
+
+        currentHand.Remove(selectedCard.Card);
+
+        DrawCardForPlayer(player1Turn);
+
+        selectedCard.SetSelected(false);
+        selectedCard = null;
+
     }
 
     #endregion
