@@ -1,56 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    #region Singleton
     public static GameManager Instance { get; private set; }
+    #endregion
+
+    [Header("Players")]
+    public PlayerState player1State = new PlayerState { playerName = "Player 1", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
+    public PlayerState player2State = new PlayerState { playerName = "Player 2", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
 
     [Header("Battle Stats")]
-    public int player1HP = 50;
-    public int player2HP = 50;
     public int terrainHP = 40;
 
-    [Header("Turn")]
+    [Header("Turn State")]
     public bool player1Turn = true;
     private bool gameOver = false;
-
-
-    [Header("Pass and Play")]
-    public GameObject turnOverlay;
-    public TMP_Text turnOverlayText;
     private bool waitingForTurnConfirm = false;
 
-    [Header("UI")]
-    public TMP_Text player1HPText;
-    public TMP_Text player2HPText;
-    public TMP_Text turnText;
-    public TMP_Text terrainHPText;
-    public TMP_Text diceNumText;
-    public TMP_Text player1BlockText;
-    public TMP_Text player2BlockText;
-
-    [Header("Decks")]
-    public List<CardData> player1Deck = new();
-    public List<CardData> player2Deck = new();
-
-    private readonly List<Card> player1Hand = new();
-    private readonly List<Card> player2Hand = new();
-
-    public int player1Block = 0;
-    public int player2Block = 0;
-
-    public int player1BlockTurnsRemaining = 0;
-    public int player2BlockTurnsRemaining = 0;
-
+    [Header("Systems")]
+    public BattleUIController battleUI;
+    public CardSystem cardSystem;
 
     [Header("Hand View")]
     public HandView handView;
     public Transform cardSpawnPoint;
 
-    private const int HandSize = 3;
     private CardView selectedCard;
 
+    #region Unity Messages
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -62,91 +41,98 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
+    private void Start()
     {
-        DrawStartingHands();
+        cardSystem.DrawStartingHands(player1State, player2State);
         UpdateUI();
 
         waitingForTurnConfirm = true;
         ShowTurnOverlay();
     }
 
-    void DrawStartingHands()
+    private void Update()
     {
-        player1Hand.Clear();
-        player2Hand.Clear();
+        if (gameOver || waitingForTurnConfirm)
+            return;
 
-        for (int i = 0; i < HandSize; i++)
+        PlayerState currentPlayer = GetCurrentPlayer();
+        currentPlayer.timeRemaining -= Time.deltaTime;
+
+        if (currentPlayer.timeRemaining <= 0f)
         {
-            DrawCardForPlayer(true);
-            DrawCardForPlayer(false);
+            currentPlayer.timeRemaining = 0f;
+            gameOver = true;
+
+            if (player1Turn)
+            {
+                battleUI.SetTurnText("Player 2 Wins! (Time)");
+                AddBattleLog("Player 1 ran out of time. Player 2 wins.");
+            }
+            else
+            {
+                battleUI.SetTurnText("Player 1 Wins! (Time)");
+                AddBattleLog("Player 2 ran out of time. Player 1 wins.");
+            }
+
+            if (handView != null)
+                handView.ClearHand();
+
+            battleUI.HideTurnOverlay();
+            UpdateUI();
+            return;
         }
-    }
 
-    void DrawCardForPlayer(bool isPlayer1)
+        battleUI.UpdateTimerUI(player1State.timeRemaining, player2State.timeRemaining);
+    }
+    #endregion
+
+    #region Public Accessors
+    public PlayerState GetCurrentPlayer()
     {
-        List<CardData> deck = isPlayer1 ? player1Deck : player2Deck;
-        List<Card> hand = isPlayer1 ? player1Hand : player2Hand;
-
-        if (deck.Count == 0) return;
-
-        int index = Random.Range(0, deck.Count);
-        hand.Add(new Card(deck[index]));
+        return player1Turn ? player1State : player2State;
     }
 
-    List<Card> GetCurrentHand()
+    public PlayerState GetOpponentPlayer()
     {
-        return player1Turn ? player1Hand : player2Hand;
+        return player1Turn ? player2State : player1State;
     }
 
-    void RefillCurrentHand()
+    public List<Card> GetCurrentHand()
     {
-        List<Card> hand = GetCurrentHand();
-
-        while (hand.Count < HandSize)
-        {
-            DrawCardForPlayer(player1Turn);
-            hand = GetCurrentHand();
-        }
+        return GetCurrentPlayer().hand;
     }
+    #endregion
 
-    //public void TryPlayCard(CardView cardView)
-    //{
-    //    if (gameOver) return;
-
-    //    List<Card> currentHand = GetCurrentHand();
-
-    //    if (!currentHand.Contains(cardView.Card))
-    //        return;
-
-    //    PlayCard(cardView.Card);
-    //}
-
+    #region Card Selection / Playing
     public void SelectCard(CardView cardView)
     {
-        if (gameOver || waitingForTurnConfirm) return;
+        if (gameOver || waitingForTurnConfirm)
+            return;
+
+        if (cardView == null || cardView.Card == null)
+            return;
 
         List<Card> currentHand = GetCurrentHand();
 
         if (!currentHand.Contains(cardView.Card))
             return;
 
-        //selectedCard = cardView;
         if (selectedCard != null)
             selectedCard.SetSelected(false);
 
         selectedCard = cardView;
         selectedCard.SetSelected(true);
 
-
         Debug.Log("Selected card: " + cardView.Card.Title);
     }
 
-
     public void ConfirmSelectedCard()
     {
-        if (gameOver || waitingForTurnConfirm) return;
-        if (selectedCard == null) return;
+        if (gameOver || waitingForTurnConfirm)
+            return;
+
+        if (selectedCard == null)
+            return;
 
         List<Card> currentHand = GetCurrentHand();
 
@@ -157,81 +143,139 @@ public class GameManager : MonoBehaviour
         selectedCard = null;
     }
 
-    void PlayCard(Card card)
+    private void PlayCard(Card card)
     {
-        if (player1Turn)
+        PlayerState currentPlayer = GetCurrentPlayer();
+        PlayerState opponent = GetOpponentPlayer();
+
+        string currentPlayerName = player1Turn ? "Player 1" : "Player 2";
+        string opponentName = player1Turn ? "Player 2" : "Player 1";
+
+        AddBattleLog(currentPlayerName + " played " + card.Title + ".");
+
+        if (card.DamageToEnemy > 0)
         {
-            ApplyDamage(false, card.DamageToEnemy);
-            player1HP += card.HealSelf;
-            ApplyDamage(true, card.SelfDamage);
-            ApplyDefense(true, card.BlockAmount);
-        }
-        else
-        {
-            ApplyDamage(true, card.DamageToEnemy);
-            player2HP += card.HealSelf;
-            ApplyDamage(false, card.SelfDamage);
-            ApplyDefense(false, card.BlockAmount);
+            int dealt = ApplyDamage(opponent, opponentName, card.DamageToEnemy);
+            AddBattleLog(opponentName + " took " + dealt + " damage.");
         }
 
-        terrainHP -= card.TerrainDamage;
+        if (card.HealSelf > 0)
+        {
+            currentPlayer.hp += card.HealSelf;
+            AddBattleLog(currentPlayerName + " healed " + card.HealSelf + " HP.");
+        }
+
+        if (card.SelfDamage > 0)
+        {
+            int selfDealt = ApplyDamage(currentPlayer, currentPlayerName, card.SelfDamage);
+            AddBattleLog(currentPlayerName + " took " + selfDealt + " self-damage.");
+        }
+
+        if (card.BlockAmount > 0)
+        {
+            ApplyDefense(currentPlayer, card.BlockAmount);
+            AddBattleLog(currentPlayerName + " gained " + card.BlockAmount + " block for 2 turns.");
+        }
+
+        if (card.TerrainDamage > 0)
+        {
+            terrainHP -= card.TerrainDamage;
+            AddBattleLog("Terrain took " + card.TerrainDamage + " damage.");
+        }
+        else if (card.TerrainDamage < 0)
+        {
+            terrainHP -= card.TerrainDamage;
+            AddBattleLog("Terrain was restored by " + (-card.TerrainDamage) + ".");
+        }
 
         ClampValues();
-
-        List<Card> currentHand = GetCurrentHand();
-        currentHand.Remove(card);
+        currentPlayer.hand.Remove(card);
 
         EndTurn();
     }
+    #endregion
 
+    #region Actions
     public void RollDice()
     {
+        if (gameOver || waitingForTurnConfirm)
+            return;
 
-        if (gameOver || waitingForTurnConfirm) return;
-        Debug.Log("RollDice pressed");
+        PlayerState currentPlayer = GetCurrentPlayer();
+        PlayerState opponent = GetOpponentPlayer();
 
-        if (gameOver) return;
+        string currentPlayerName = player1Turn ? "Player 1" : "Player 2";
+        string opponentName = player1Turn ? "Player 2" : "Player 1";
+
+        if (currentPlayer.diceUsesRemaining <= 0)
+        {
+            AddBattleLog(currentPlayerName + " has no dice rolls remaining.");
+            return;
+        }
+
+        if (selectedCard == null)
+        {
+            AddBattleLog(currentPlayerName + " must select a card to swap before rolling dice.");
+            return;
+        }
+
+        string swappedCardName = selectedCard.Card.Title;
+
+        bool replaced = cardSystem.ReplaceCardInHand(currentPlayer, selectedCard.Card);
+        if (!replaced)
+            return;
+
+        currentPlayer.diceUsesRemaining--;
+
+        selectedCard.SetSelected(false);
+        selectedCard = null;
+
+        AddBattleLog(currentPlayerName + " swapped " + swappedCardName + " and rolled the dice.");
 
         int roll = Random.Range(1, 7);
-        diceNumText.text = "Dice Roll: " + roll;
+        battleUI.SetDiceRollText(roll);
 
         if (roll <= 3)
         {
-            if (player1Turn) player2HP -= 12;
-            else player1HP -= 12;
+            int dealt = ApplyDamage(opponent, opponentName, 12);
+            AddBattleLog(currentPlayerName + " rolled " + roll + " and dealt " + dealt + " damage to " + opponentName + ".");
         }
         else
         {
-            if (player1Turn) player1HP -= 12;
-            else player2HP -= 12;
+            int dealt = ApplyDamage(currentPlayer, currentPlayerName, 12);
+            AddBattleLog(currentPlayerName + " rolled " + roll + " and took " + dealt + " damage.");
         }
 
         ClampValues();
+        UpdateUI();
         EndTurn();
     }
 
-    //public void Attack()
-    //{
-    //    if (gameOver) return;
-
-    //    if (player1Turn)
-    //    {
-    //        player2HP -= 10;
-    //        terrainHP -= 3;
-    //    }
-    //    else
-    //    {
-    //        player1HP -= 10;
-    //        terrainHP -= 3;
-    //    }
-
-    //    ClampValues();
-    //    EndTurn();
-    //}
-
-    void EndTurn()
+    public void Forfeit()
     {
+        if (gameOver || waitingForTurnConfirm)
+            return;
 
+        AddBattleLog(player1Turn ? "Player 1 forfeited." : "Player 2 forfeited.");
+        gameOver = true;
+
+        if (player1Turn)
+            battleUI.SetTurnText("Player 2 Wins! (Forfeit)");
+        else
+            battleUI.SetTurnText("Player 1 Wins! (Forfeit)");
+
+        battleUI.HideTurnOverlay();
+
+        if (handView != null)
+            handView.ClearHand();
+
+        UpdateUI();
+    }
+    #endregion
+
+    #region Turn Flow
+    private void EndTurn()
+    {
         if (selectedCard != null)
         {
             selectedCard.SetSelected(false);
@@ -239,198 +283,162 @@ public class GameManager : MonoBehaviour
         }
 
         DecrementCurrentPlayerDefenseDuration();
+
         CheckWin();
         if (gameOver)
         {
+            battleUI.HideTurnOverlay();
+
+            if (handView != null)
+                handView.ClearHand();
+
             UpdateUI();
             return;
         }
 
         player1Turn = !player1Turn;
-        RefillCurrentHand();
+
+        cardSystem.RefillHand(GetCurrentPlayer());
+
         UpdateUI();
 
         waitingForTurnConfirm = true;
         ShowTurnOverlay();
     }
 
-    void ClampValues()
+    private void ClampValues()
     {
-        player1HP = Mathf.Max(0, player1HP);
-        player2HP = Mathf.Max(0, player2HP);
+        player1State.hp = Mathf.Max(0, player1State.hp);
+        player2State.hp = Mathf.Max(0, player2State.hp);
         terrainHP = Mathf.Max(0, terrainHP);
     }
 
-    void CheckWin()
+    private void CheckWin()
     {
+        if (player1State.hp <= 0)
+        {
+            gameOver = true;
+            battleUI.SetTurnText("Player 2 Wins!");
+            AddBattleLog("Player 2 wins.");
+            return;
+        }
+
+        if (player2State.hp <= 0)
+        {
+            gameOver = true;
+            battleUI.SetTurnText("Player 1 Wins!");
+            AddBattleLog("Player 1 wins.");
+            return;
+        }
+
         if (terrainHP <= 0)
         {
             gameOver = true;
-            turnText.text = "Terrain Destroyed! It's a Draw!";
-            return;
-        }
-
-        if (player1HP <= 0)
-        {
-            gameOver = true;
-            turnText.text = "Player 2 Wins!";
-            return;
-        }
-
-        if (player2HP <= 0)
-        {
-            gameOver = true;
-            turnText.text = "Player 1 Wins!";
-            return;
-        }
-
-    }
-
-    #region Defense and Damage Logic
-    void ApplyDefense(bool forPlayer1, int blockAmount)
-    {
-        if (forPlayer1)
-        {
-            player1Block = blockAmount;
-            player1BlockTurnsRemaining = 2;
-        }
-        else
-        {
-            player2Block = blockAmount;
-            player2BlockTurnsRemaining = 2;
-        }
-    }
-
-    void ApplyDamage(bool targetPlayer1, int damage)
-    {
-        if (targetPlayer1)
-        {
-            if (player1BlockTurnsRemaining > 0 && player1Block > 0)
-            {
-                if (damage <= player1Block)
-                {
-                    // Full block
-                    player1Block = 0;
-                    player1BlockTurnsRemaining = 0;
-                    return;
-                }
-                else
-                {
-                    // Partial mitigation, then defense expires
-                    damage -= player1Block;
-                    player1Block = 0;
-                    player1BlockTurnsRemaining = 0;
-                }
-            }
-
-            player1HP -= damage;
-        }
-        else
-        {
-            if (player2BlockTurnsRemaining > 0 && player2Block > 0)
-            {
-                if (damage <= player2Block)
-                {
-                    // Full block
-                    player2Block = 0;
-                    player2BlockTurnsRemaining = 0;
-                    return;
-                }
-                else
-                {
-                    // Partial mitigation, then defense expires
-                    damage -= player2Block;
-                    player2Block = 0;
-                    player2BlockTurnsRemaining = 0;
-                }
-            }
-
-            player2HP -= damage;
-        }
-    }
-
-    void DecrementCurrentPlayerDefenseDuration()
-    {
-        if (player1Turn)
-        {
-            if (player1BlockTurnsRemaining > 0)
-            {
-                player1BlockTurnsRemaining--;
-                if (player1BlockTurnsRemaining <= 0)
-                    player1Block = 0;
-            }
-        }
-        else
-        {
-            if (player2BlockTurnsRemaining > 0)
-            {
-                player2BlockTurnsRemaining--;
-                if (player2BlockTurnsRemaining <= 0)
-                    player2Block = 0;
-            }
+            battleUI.SetTurnText("Terrain Destroyed! It's a Draw!");
+            AddBattleLog("The terrain was destroyed. Draw.");
         }
     }
     #endregion
 
-    void UpdateUI()
+    #region Defense and Damage Logic
+    private void ApplyDefense(PlayerState player, int blockAmount)
     {
-        player1HPText.text = "Player 1 HP: " + player1HP;
-        player2HPText.text = "Player 2 HP: " + player2HP;
-        terrainHPText.text = "Terrain HP: " + terrainHP;
-
-        if (player1BlockTurnsRemaining > 0 && player1Block > 0)
-            player1BlockText.text = "Shield: " + player1Block + " (" + player1BlockTurnsRemaining + ")";
-        else
-            player1BlockText.text = "NO SHIELD";
-
-        if (player2BlockTurnsRemaining > 0 && player2Block > 0)
-            player2BlockText.text = "Shield: " + player2Block + " (" + player2BlockTurnsRemaining + ")";
-        else
-            player2BlockText.text = "NO SHIELD";
-
-        if (!gameOver)
-            turnText.text = player1Turn ? "Player 1 Turn" : "Player 2 Turn";
+        player.block = blockAmount;
+        player.blockTurnsRemaining = 2;
     }
 
-    async void ShowCurrentPlayerHand()
+    private int ApplyDamage(PlayerState targetPlayer, string targetName, int damage)
     {
+        if (damage <= 0)
+            return 0;
+
+        if (targetPlayer.blockTurnsRemaining > 0 && targetPlayer.block > 0)
+        {
+            if (damage <= targetPlayer.block)
+            {
+                AddBattleLog(targetName + " fully blocked the hit.");
+                targetPlayer.block = 0;
+                targetPlayer.blockTurnsRemaining = 0;
+                return 0;
+            }
+            else
+            {
+                int blocked = targetPlayer.block;
+                damage -= blocked;
+                AddBattleLog(targetName + " blocked " + blocked + " damage.");
+                targetPlayer.block = 0;
+                targetPlayer.blockTurnsRemaining = 0;
+            }
+        }
+
+        targetPlayer.hp -= damage;
+        return damage;
+    }
+
+    private void DecrementCurrentPlayerDefenseDuration()
+    {
+        PlayerState currentPlayer = GetCurrentPlayer();
+
+        if (currentPlayer.blockTurnsRemaining > 0)
+        {
+            currentPlayer.blockTurnsRemaining--;
+
+            if (currentPlayer.blockTurnsRemaining <= 0)
+                currentPlayer.block = 0;
+        }
+    }
+    #endregion
+
+    #region UI / Hand Presentation
+    private void UpdateUI()
+    {
+        battleUI.UpdateMainUI(player1State, player2State, terrainHP, player1Turn, gameOver);
+    }
+
+    private async void ShowCurrentPlayerHand()
+    {
+        if (handView == null)
+            return;
+
         handView.ClearHand();
 
         foreach (Card card in GetCurrentHand())
         {
-            CardView view = CardViewCreator.Instance.CreateCardView(card, cardSpawnPoint.position, Quaternion.identity);
-           
-        Debug.Log("Spawned card at: " + view.transform.position);
+            CardView view = CardViewCreator.Instance.CreateCardView(
+                card,
+                cardSpawnPoint.position,
+                Quaternion.identity
+            );
+
+            Debug.Log("Spawned card at: " + view.transform.position);
             await System.Threading.Tasks.Task.Yield();
             StartCoroutine(handView.AddCard(view));
         }
     }
 
-    void ShowTurnOverlay()
+    private void ShowTurnOverlay()
     {
         if (handView != null)
             handView.ClearHand();
 
-        if (turnOverlay != null)
-            turnOverlay.SetActive(true);
-
-        if (turnOverlayText != null)
-        {
-            turnOverlayText.text = player1Turn
-                ? "Player 1 Turn\nPass the device"
-                : "Player 2 Turn\nPass the device";
-        }
+        battleUI.ShowTurnOverlay(player1Turn);
     }
 
     public void ConfirmTurnStart()
     {
-        if (!waitingForTurnConfirm) return;
+        if (!waitingForTurnConfirm)
+            return;
 
         waitingForTurnConfirm = false;
-
-        if (turnOverlay != null)
-            turnOverlay.SetActive(false);
-
+        battleUI.HideTurnOverlay();
         ShowCurrentPlayerHand();
     }
+    #endregion
+
+    #region Battle Log
+    private void AddBattleLog(string message)
+    {
+        battleUI.AddBattleLog(message);
+    }
+    #endregion
 }
