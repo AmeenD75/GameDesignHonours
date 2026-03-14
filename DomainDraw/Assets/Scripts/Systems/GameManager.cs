@@ -4,23 +4,32 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    #region Singleton
     public static GameManager Instance { get; private set; }
+    #endregion
 
+    #region Inspector - Battle Stats
     [Header("Battle Stats")]
     public int player1HP = 50;
     public int player2HP = 50;
     public int terrainHP = 40;
+    #endregion
 
+    #region Inspector - Turn State
     [Header("Turn")]
     public bool player1Turn = true;
     private bool gameOver = false;
+    #endregion
 
 
+    #region Inspector - Pass and Play
     [Header("Pass and Play")]
     public GameObject turnOverlay;
     public TMP_Text turnOverlayText;
     private bool waitingForTurnConfirm = false;
+    #endregion
 
+    #region Inspector - UI
     [Header("UI")]
     public TMP_Text player1HPText;
     public TMP_Text player2HPText;
@@ -29,28 +38,45 @@ public class GameManager : MonoBehaviour
     public TMP_Text diceNumText;
     public TMP_Text player1BlockText;
     public TMP_Text player2BlockText;
+    #endregion
 
+    #region Inspector - Decks / Hands
     [Header("Decks")]
     public List<CardData> player1Deck = new();
     public List<CardData> player2Deck = new();
 
     private readonly List<Card> player1Hand = new();
     private readonly List<Card> player2Hand = new();
+    #endregion
 
+    #region Battle - Defense State
     public int player1Block = 0;
     public int player2Block = 0;
 
     public int player1BlockTurnsRemaining = 0;
     public int player2BlockTurnsRemaining = 0;
+    #endregion
 
 
+    #region Inspector - Hand View
     [Header("Hand View")]
     public HandView handView;
     public Transform cardSpawnPoint;
+    #endregion
 
+    #region Runtime State
     private const int HandSize = 3;
     private CardView selectedCard;
+    #endregion
 
+
+    [Header("Battle Log")]
+    public GameObject battleLogPanel;
+    public TMP_Text battleLogText;
+    private readonly List<string> battleLogEntries = new();
+    [SerializeField] private int maxBattleLogEntries = 8;
+
+    #region Unity Messages
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -70,7 +96,10 @@ public class GameManager : MonoBehaviour
         waitingForTurnConfirm = true;
         ShowTurnOverlay();
     }
+    #endregion
 
+    #region Hand / Deck Management
+    // Fills both hands at game start.
     void DrawStartingHands()
     {
         player1Hand.Clear();
@@ -83,6 +112,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Draws a random card from the selected player's deck and adds it to their hand.
     void DrawCardForPlayer(bool isPlayer1)
     {
         List<CardData> deck = isPlayer1 ? player1Deck : player2Deck;
@@ -94,11 +124,13 @@ public class GameManager : MonoBehaviour
         hand.Add(new Card(deck[index]));
     }
 
+    // Returns the hand for the player whose turn it currently is.
     List<Card> GetCurrentHand()
     {
         return player1Turn ? player1Hand : player2Hand;
     }
 
+    // Ensures the current player's hand is refilled up to HandSize.
     void RefillCurrentHand()
     {
         List<Card> hand = GetCurrentHand();
@@ -109,6 +141,7 @@ public class GameManager : MonoBehaviour
             hand = GetCurrentHand();
         }
     }
+    #endregion
 
     //public void TryPlayCard(CardView cardView)
     //{
@@ -122,6 +155,8 @@ public class GameManager : MonoBehaviour
     //    PlayCard(cardView.Card);
     //}
 
+    #region Card Selection / Playing
+    // Called by the UI/input layer when a card is clicked/hover-selected.
     public void SelectCard(CardView cardView)
     {
         if (gameOver || waitingForTurnConfirm) return;
@@ -143,6 +178,7 @@ public class GameManager : MonoBehaviour
     }
 
 
+    // Called by the UI/input layer to confirm and play the currently selected card.
     public void ConfirmSelectedCard()
     {
         if (gameOver || waitingForTurnConfirm) return;
@@ -157,58 +193,148 @@ public class GameManager : MonoBehaviour
         selectedCard = null;
     }
 
+    // Applies the card effects, removes it from the hand, then ends the turn.
     void PlayCard(Card card)
     {
+        string currentPlayerName = player1Turn ? "Player 1" : "Player 2";
+        string opponentName = player1Turn ? "Player 2" : "Player 1";
+
+        AddBattleLog(currentPlayerName + " played " + card.Title + ".");
+
         if (player1Turn)
         {
-            ApplyDamage(false, card.DamageToEnemy);
-            player1HP += card.HealSelf;
-            ApplyDamage(true, card.SelfDamage);
-            ApplyDefense(true, card.BlockAmount);
+            if (card.DamageToEnemy > 0)
+            {
+                int dealt = ApplyDamage(false, card.DamageToEnemy);
+                AddBattleLog(opponentName + " took " + dealt + " damage.");
+            }
+
+            if (card.HealSelf > 0)
+            {
+                player1HP += card.HealSelf;
+                AddBattleLog(currentPlayerName + " healed " + card.HealSelf + " HP.");
+            }
+
+            if (card.SelfDamage > 0)
+            {
+                int selfDealt = ApplyDamage(true, card.SelfDamage);
+                AddBattleLog(currentPlayerName + " took " + selfDealt + " self-damage.");
+            }
+
+            if (card.BlockAmount > 0)
+            {
+                ApplyDefense(true, card.BlockAmount);
+                AddBattleLog(currentPlayerName + " gained " + card.BlockAmount + " block for 2 turns.");
+            }
         }
         else
         {
-            ApplyDamage(true, card.DamageToEnemy);
-            player2HP += card.HealSelf;
-            ApplyDamage(false, card.SelfDamage);
-            ApplyDefense(false, card.BlockAmount);
+            if (card.DamageToEnemy > 0)
+            {
+                int dealt = ApplyDamage(true, card.DamageToEnemy);
+                AddBattleLog(opponentName + " took " + dealt + " damage.");
+            }
+
+            if (card.HealSelf > 0)
+            {
+                player2HP += card.HealSelf;
+                AddBattleLog(currentPlayerName + " healed " + card.HealSelf + " HP.");
+            }
+
+            if (card.SelfDamage > 0)
+            {
+                int selfDealt = ApplyDamage(false, card.SelfDamage);
+                AddBattleLog(currentPlayerName + " took " + selfDealt + " self-damage.");
+            }
+
+            if (card.BlockAmount > 0)
+            {
+                ApplyDefense(false, card.BlockAmount);
+                AddBattleLog(currentPlayerName + " gained " + card.BlockAmount + " block for 2 turns.");
+            }
         }
 
-        terrainHP -= card.TerrainDamage;
-
+        if (card.TerrainDamage > 0)
+        {
+            terrainHP -= card.TerrainDamage;
+            AddBattleLog("Terrain took " + card.TerrainDamage + " damage.");
+        }
+        else if (card.TerrainDamage < 0)
+        {
+            terrainHP -= card.TerrainDamage; // subtracting negative repairs
+            AddBattleLog("Terrain was restored by " + (-card.TerrainDamage) + ".");
+        }
         ClampValues();
-
         List<Card> currentHand = GetCurrentHand();
         currentHand.Remove(card);
 
         EndTurn();
     }
+    #endregion
 
+    #region Actions (UI Buttons)
+    // Dice roll action that applies damage based on a 1-6 roll.
     public void RollDice()
     {
-
         if (gameOver || waitingForTurnConfirm) return;
-        Debug.Log("RollDice pressed");
-
-        if (gameOver) return;
 
         int roll = Random.Range(1, 7);
         diceNumText.text = "Dice Roll: " + roll;
 
+        string currentPlayerName = player1Turn ? "Player 1" : "Player 2";
+        string opponentName = player1Turn ? "Player 2" : "Player 1";
+
         if (roll <= 3)
         {
-            if (player1Turn) player2HP -= 12;
-            else player1HP -= 12;
+            if (player1Turn)
+            {
+                int dealt = ApplyDamage(false, 12);
+                AddBattleLog(currentPlayerName + " rolled " + roll + " and dealt " + dealt + " damage to " + opponentName + ".");
+            }
+            else
+            {
+                int dealt = ApplyDamage(true, 12);
+                AddBattleLog(currentPlayerName + " rolled " + roll + " and dealt " + dealt + " damage to " + opponentName + ".");
+            }
         }
         else
         {
-            if (player1Turn) player1HP -= 12;
-            else player2HP -= 12;
+            if (player1Turn)
+            {
+                int dealt = ApplyDamage(true, 12);
+                AddBattleLog(currentPlayerName + " rolled " + roll + " and took " + dealt + " damage.");
+            }
+            else
+            {
+                int dealt = ApplyDamage(false, 12);
+                AddBattleLog(currentPlayerName + " rolled " + roll + " and took " + dealt + " damage.");
+            }
         }
-
         ClampValues();
         EndTurn();
     }
+
+    // Ends the game immediately, awarding win to the other player.
+    public void Forfeit()
+    {
+        if (gameOver || waitingForTurnConfirm) return;
+        AddBattleLog(player1Turn ? "Player 1 forfeited." : "Player 2 forfeited.");
+        gameOver = true;
+
+        if (player1Turn)
+            turnText.text = "Player 2 Wins! (Forfeit)";
+        else
+            turnText.text = "Player 1 Wins! (Forfeit)";
+
+        if (turnOverlay != null)
+            turnOverlay.SetActive(false);
+
+        if (handView != null)
+            handView.ClearHand();
+
+        UpdateUI();
+    }
+    #endregion
 
     //public void Attack()
     //{
@@ -229,6 +355,8 @@ public class GameManager : MonoBehaviour
     //    EndTurn();
     //}
 
+    #region Turn Flow
+    // Resolves end-of-turn state updates and switches active player.
     void EndTurn()
     {
 
@@ -242,6 +370,11 @@ public class GameManager : MonoBehaviour
         CheckWin();
         if (gameOver)
         {
+            if (turnOverlay != null)
+                turnOverlay.SetActive(false);
+
+            if (handView != null)
+                handView.ClearHand();
             UpdateUI();
             return;
         }
@@ -254,6 +387,7 @@ public class GameManager : MonoBehaviour
         ShowTurnOverlay();
     }
 
+    // Prevents HP values from going below zero.
     void ClampValues()
     {
         player1HP = Mathf.Max(0, player1HP);
@@ -261,32 +395,35 @@ public class GameManager : MonoBehaviour
         terrainHP = Mathf.Max(0, terrainHP);
     }
 
+    // Checks win/lose conditions and sets gameOver + UI message when met.
     void CheckWin()
     {
-        if (terrainHP <= 0)
-        {
-            gameOver = true;
-            turnText.text = "Terrain Destroyed! It's a Draw!";
-            return;
-        }
-
         if (player1HP <= 0)
         {
             gameOver = true;
             turnText.text = "Player 2 Wins!";
+            AddBattleLog("Player 2 wins.");
             return;
         }
-
         if (player2HP <= 0)
         {
             gameOver = true;
             turnText.text = "Player 1 Wins!";
+            AddBattleLog("Player 1 wins.");
             return;
         }
-
+        if (terrainHP <= 0)
+        {
+            gameOver = true;
+            turnText.text = "Terrain Destroyed! It's a Draw!";
+            AddBattleLog("The terrain was destroyed. Draw.");
+            return;
+        }
     }
+    #endregion
 
     #region Defense and Damage Logic
+    // Applies a defensive shield to the specified player.
     void ApplyDefense(bool forPlayer1, int blockAmount)
     {
         if (forPlayer1)
@@ -301,29 +438,34 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void ApplyDamage(bool targetPlayer1, int damage)
+    // Applies incoming damage, accounting for any active shield.
+    int ApplyDamage(bool targetPlayer1, int damage)
     {
+        if (damage <= 0) return 0;
+
         if (targetPlayer1)
         {
             if (player1BlockTurnsRemaining > 0 && player1Block > 0)
             {
                 if (damage <= player1Block)
                 {
-                    // Full block
+                    AddBattleLog("Player 1 fully blocked the hit.");
                     player1Block = 0;
                     player1BlockTurnsRemaining = 0;
-                    return;
+                    return 0;
                 }
                 else
                 {
-                    // Partial mitigation, then defense expires
-                    damage -= player1Block;
+                    int blocked = player1Block;
+                    damage -= blocked;
+                    AddBattleLog("Player 1 blocked " + blocked + " damage.");
                     player1Block = 0;
                     player1BlockTurnsRemaining = 0;
                 }
             }
 
             player1HP -= damage;
+            return damage;
         }
         else
         {
@@ -331,24 +473,26 @@ public class GameManager : MonoBehaviour
             {
                 if (damage <= player2Block)
                 {
-                    // Full block
+                    AddBattleLog("Player 2 fully blocked the hit.");
                     player2Block = 0;
                     player2BlockTurnsRemaining = 0;
-                    return;
+                    return 0;
                 }
                 else
                 {
-                    // Partial mitigation, then defense expires
-                    damage -= player2Block;
+                    int blocked = player2Block;
+                    damage -= blocked;
+                    AddBattleLog("Player 2 blocked " + blocked + " damage.");
                     player2Block = 0;
                     player2BlockTurnsRemaining = 0;
                 }
             }
-
             player2HP -= damage;
+            return damage;
         }
     }
 
+    // Decrements shield duration for the player who just ended their turn.
     void DecrementCurrentPlayerDefenseDuration()
     {
         if (player1Turn)
@@ -372,6 +516,8 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region UI / Hand Presentation
+    // Refreshes HUD text based on the current game state.
     void UpdateUI()
     {
         player1HPText.text = "Player 1 HP: " + player1HP;
@@ -392,6 +538,7 @@ public class GameManager : MonoBehaviour
             turnText.text = player1Turn ? "Player 1 Turn" : "Player 2 Turn";
     }
 
+    // Clears and re-spawns the current player's hand into the HandView.
     async void ShowCurrentPlayerHand()
     {
         handView.ClearHand();
@@ -399,13 +546,14 @@ public class GameManager : MonoBehaviour
         foreach (Card card in GetCurrentHand())
         {
             CardView view = CardViewCreator.Instance.CreateCardView(card, cardSpawnPoint.position, Quaternion.identity);
-           
-        Debug.Log("Spawned card at: " + view.transform.position);
+ 
+            Debug.Log("Spawned card at: " + view.transform.position);
             await System.Threading.Tasks.Task.Yield();
             StartCoroutine(handView.AddCard(view));
         }
     }
 
+    // Shows the pass-and-play overlay and hides cards until confirmed.
     void ShowTurnOverlay()
     {
         if (handView != null)
@@ -422,6 +570,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    // Called by the overlay button to start the active player's turn.
     public void ConfirmTurnStart()
     {
         if (!waitingForTurnConfirm) return;
@@ -433,4 +583,17 @@ public class GameManager : MonoBehaviour
 
         ShowCurrentPlayerHand();
     }
+    #endregion
+
+    void AddBattleLog(string message)
+    {
+        battleLogEntries.Add(message);
+
+        if (battleLogEntries.Count > maxBattleLogEntries)
+            battleLogEntries.RemoveAt(0);
+
+        if (battleLogText != null)
+            battleLogText.text = string.Join("\n", battleLogEntries);
+    }
+
 }
