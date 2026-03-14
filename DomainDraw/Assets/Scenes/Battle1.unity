@@ -642,6 +642,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deba8c0e1743d4343afb31f7c8ff383e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardView
+--- !u!1 &500505571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 500505572}
+  - component: {fileID: 500505573}
+  m_Layer: 0
+  m_Name: BattleEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &500505572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500505571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1777820919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &500505573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500505571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a04f0101f7cb424fab71a516598aca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleEndUIController
+  endPanel: {fileID: 1371899996}
+  resultText: {fileID: 1371899995}
+  battleSceneName: Battle1
+  mainMenuSceneName: MainMenu
 --- !u!1001 &564880727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -934,6 +982,7 @@ MonoBehaviour:
   debugPlayer2Race: {fileID: 11400000, guid: 7ecdd73d2a1809e46b48eaafbfb2b3dd, type: 2}
   debugDomain: {fileID: 0}
   battleBackgroundRenderer: {fileID: 252892581}
+  battleEndUI: {fileID: 500505573}
   player1State:
     playerName: Player 1
     hp: 50
@@ -1115,10 +1164,70 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3143008689423156982, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4583741548521833668, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 971339159}
+    - target: {fileID: 4612696347021345873, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612696347021345873, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612696347021345873, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 500505573}
+    - target: {fileID: 4612696347021345873, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612696347021345873, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612696347021345873, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BattleEndUIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612696347021345873, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682305942027250889, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682305942027250889, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682305942027250889, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 500505573}
+    - target: {fileID: 4682305942027250889, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682305942027250889, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartBattle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682305942027250889, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BattleEndUIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4682305942027250889, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4844331742237949218, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1216,6 +1325,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+--- !u!114 &1371899995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6534459889747379377, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+  m_PrefabInstance: {fileID: 1371899994}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &1371899996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3143008689423156982, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+  m_PrefabInstance: {fileID: 1371899994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1393066963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1340,6 +1465,7 @@ Transform:
   - {fileID: 971339160}
   - {fileID: 152769699}
   - {fileID: 161969543}
+  - {fileID: 500505572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1789456360 stripped
