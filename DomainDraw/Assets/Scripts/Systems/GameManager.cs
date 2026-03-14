@@ -76,6 +76,14 @@ public class GameManager : MonoBehaviour
     private readonly List<string> battleLogEntries = new();
     [SerializeField] private int maxBattleLogEntries = 8;
 
+
+    [Header("Chess Timer")]
+    public float player1TimeRemaining = 120f;
+    public float player2TimeRemaining = 120f;
+
+    public TMP_Text player1TimerText;
+    public TMP_Text player2TimerText;
+
     #region Unity Messages
     private void Awake()
     {
@@ -556,6 +564,7 @@ public class GameManager : MonoBehaviour
 
         if (!gameOver)
             turnText.text = player1Turn ? "Player 1 Turn" : "Player 2 Turn";
+        UpdateTimerUI();
     }
 
     // Clears and re-spawns the current player's hand into the HandView.
@@ -605,6 +614,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region Battle Log and Timer
     void AddBattleLog(string message)
     {
         battleLogEntries.Add(message);
@@ -615,5 +625,56 @@ public class GameManager : MonoBehaviour
         if (battleLogText != null)
             battleLogText.text = string.Join("\n", battleLogEntries);
     }
+    void Update()
+    {
+        if (gameOver || waitingForTurnConfirm)
+            return;
 
+        if (player1Turn)
+        {
+            player1TimeRemaining -= Time.deltaTime;
+
+            if (player1TimeRemaining <= 0f)
+            {
+                player1TimeRemaining = 0f;
+                gameOver = true;
+                turnText.text = "Player 2 Wins! (Time)";
+                AddBattleLog("Player 1 ran out of time. Player 2 wins.");
+                UpdateUI();
+                return;
+            }
+        }
+        else
+        {
+            player2TimeRemaining -= Time.deltaTime;
+
+            if (player2TimeRemaining <= 0f)
+            {
+                player2TimeRemaining = 0f;
+                gameOver = true;
+                turnText.text = "Player 1 Wins! (Time)";
+                AddBattleLog("Player 2 ran out of time. Player 1 wins.");
+                UpdateUI();
+                return;
+            }
+        }
+
+        UpdateTimerUI();
+    }
+
+    void UpdateTimerUI()
+    {
+        player1TimerText.text = "Time: " + FormatTime(player1TimeRemaining);
+        player2TimerText.text = "Time: " + FormatTime(player2TimeRemaining);
+    }
+
+    string FormatTime(float timeInSeconds)
+    {
+        int totalSeconds = Mathf.CeilToInt(timeInSeconds);
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+        return minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
+
+    #endregion
 }
