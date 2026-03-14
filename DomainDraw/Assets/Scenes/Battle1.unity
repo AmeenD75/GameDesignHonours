@@ -839,6 +839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed36b3f34056bf43938e3561331854f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  debugPlayer1Race: {fileID: 11400000, guid: f659f8f33dd100946be40edae22d5adc, type: 2}
+  debugPlayer2Race: {fileID: 11400000, guid: 7ecdd73d2a1809e46b48eaafbfb2b3dd, type: 2}
   player1State:
     playerName: Player 1
     hp: 50

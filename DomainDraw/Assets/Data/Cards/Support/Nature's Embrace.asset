@@ -18,5 +18,6 @@ MonoBehaviour:
   <Image>k__BackingField: {fileID: 8323633935264501841, guid: c4b72e0d664f93f4a9f7d26f6a1b9b0a, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 15
-  <TerrainDamage>k__BackingField: 10
+  <TerrainDamage>k__BackingField: -10
   <SelfDamage>k__BackingField: 0
+  <BlockAmount>k__BackingField: 0
