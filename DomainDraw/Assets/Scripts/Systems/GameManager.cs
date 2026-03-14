@@ -117,11 +117,31 @@ public class GameManager : MonoBehaviour
     {
         List<CardData> deck = isPlayer1 ? player1Deck : player2Deck;
         List<Card> hand = isPlayer1 ? player1Hand : player2Hand;
-
         if (deck.Count == 0) return;
+        // Build a list of cards not already in hand
+        List<CardData> validChoices = new List<CardData>();
 
-        int index = Random.Range(0, deck.Count);
-        hand.Add(new Card(deck[index]));
+        foreach (CardData cardData in deck)
+        {
+            bool alreadyInHand = false;
+
+            foreach (Card handCard in hand)
+            {
+                if (handCard.Title == cardData.Title)
+                {
+                    alreadyInHand = true;
+                    break;
+                }
+            }
+
+            if (!alreadyInHand)
+                validChoices.Add(cardData);
+        }
+        // No valid unique card left to draw
+        if (validChoices.Count == 0) return;
+
+        int index = Random.Range(0, validChoices.Count);
+        hand.Add(new Card(validChoices[index]));
     }
 
     // Returns the hand for the player whose turn it currently is.
