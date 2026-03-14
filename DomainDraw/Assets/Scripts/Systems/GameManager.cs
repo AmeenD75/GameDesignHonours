@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     #endregion
 
+    [Header("Debug Race Assignment")]
+    public RaceData debugPlayer1Race;
+    public RaceData debugPlayer2Race;
+
     [Header("Players")]
     public PlayerState player1State = new PlayerState { playerName = "Player 1", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
     public PlayerState player2State = new PlayerState { playerName = "Player 2", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
@@ -43,6 +47,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        ApplySelectedRaces();
+
         cardSystem.DrawStartingHands(player1State, player2State);
         UpdateUI();
 
@@ -440,5 +446,26 @@ public class GameManager : MonoBehaviour
     {
         battleUI.AddBattleLog(message);
     }
+    #endregion
+
+    #region Character Selection
+    private void ApplySelectedRaces()
+    {
+        RaceData p1Race = MatchSetup.player1Race != null ? MatchSetup.player1Race : debugPlayer1Race;
+        RaceData p2Race = MatchSetup.player2Race != null ? MatchSetup.player2Race : debugPlayer2Race;
+
+        if (p1Race != null)
+        {
+            player1State.playerName = p1Race.raceName;
+            player1State.deck = new List<CardData>(p1Race.cardPool);
+        }
+
+        if (p2Race != null)
+        {
+            player2State.playerName = p2Race.raceName;
+            player2State.deck = new List<CardData>(p2Race.cardPool);
+        }
+    }
+
     #endregion
 }
