@@ -20,7 +20,7 @@ public class CharacterSelectManager : MonoBehaviour
     public TMP_Text continueButtonText;
 
     [Header("Scene Flow")]
-    public string nextSceneName = "BattleScene";
+    public string nextSceneName = "DomainSelection";
 
     private int currentRaceIndex = 0;
     private bool choosingPlayer1 = true;
@@ -120,8 +120,8 @@ public class CharacterSelectManager : MonoBehaviour
         if (titleText != null)
         {
             titleText.text = choosingPlayer1
-                ? "Player 1 - Choose Race"
-                : "Player 2 - Choose Race";
+                ? "Player 1 Race Selection"
+                : "Player 2 Race Selection";
         }
 
         if (raceNameText != null)
