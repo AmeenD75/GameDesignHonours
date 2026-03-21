@@ -126,6 +126,14 @@ public class GameManager : MonoBehaviour
 
         if (!currentHand.Contains(cardView.Card))
             return;
+        // Deselct card if selected
+        if (selectedCard == cardView)
+        {
+            selectedCard.SetSelected(false);
+            selectedCard = null;
+            Debug.Log("Deselected card: " + cardView.Card.Title);
+            return;
+        }
 
         if (selectedCard != null)
             selectedCard.SetSelected(false);
