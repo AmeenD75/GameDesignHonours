@@ -18,6 +18,6 @@ MonoBehaviour:
   cardPool:
   - {fileID: 11400000, guid: 0c089b1d84c1151499809b3f39247663, type: 2}
   - {fileID: 11400000, guid: 65ab836fcd1b598458f4c076c8c8c3dc, type: 2}
-  - {fileID: 11400000, guid: 8f03c416d5de06c4f82af7c48cf29fc4, type: 2}
-  - {fileID: 11400000, guid: 346104ea6c2659f4abf46f6348f94906, type: 2}
-  - {fileID: 11400000, guid: cf4467b5200d2f745ac6e761dc4cd461, type: 2}
+  - {fileID: 11400000, guid: a7e338eb20f8ba74f8e74629f8ed8c88, type: 2}
+  - {fileID: 11400000, guid: 9b0315fa539fd2545b24df2a7f41271c, type: 2}
+  - {fileID: 11400000, guid: de09c78a42ab2954fbc210b3fcb9c62c, type: 2}
