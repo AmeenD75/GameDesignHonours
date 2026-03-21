@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Slice
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Title>k__BackingField: Slice
-  <Description>k__BackingField: cvbvcxsf
-  <Type>k__BackingField: 1
+  <Description>k__BackingField: Slice A foe
+  <Type>k__BackingField: 0
   <Image>k__BackingField: {fileID: -3093610844112999115, guid: 36f8246646aefac45889329543f04406, type: 3}
-  <DamageToEnemy>k__BackingField: 0
+  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
+  <DamageToEnemy>k__BackingField: 12
   <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: 0
+  <TerrainDamage>k__BackingField: 6
   <SelfDamage>k__BackingField: 0
   <BlockAmount>k__BackingField: 0

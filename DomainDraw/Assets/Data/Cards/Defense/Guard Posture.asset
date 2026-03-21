@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
+  m_Name: Guard Posture
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  <Title>k__BackingField: Guard Posture
+  <Description>k__BackingField: Solid defence posture ready to block heavy attacks
+  <Type>k__BackingField: 1
+  <Image>k__BackingField: {fileID: -5534510366791142189, guid: 7b33e3ec4134e4b42bc29948a7f1d4ce, type: 3}
+  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
+  <DamageToEnemy>k__BackingField: 0
+  <HealSelf>k__BackingField: 0
+  <TerrainDamage>k__BackingField: -2
+  <SelfDamage>k__BackingField: 0
+  <BlockAmount>k__BackingField: 4
