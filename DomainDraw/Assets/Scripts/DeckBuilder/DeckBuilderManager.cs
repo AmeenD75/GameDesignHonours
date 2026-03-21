@@ -181,15 +181,15 @@ public class DeckBuilderManager : MonoBehaviour
             titleText.text = "Deck Builder";
 
         if (playerText != null)
-            playerText.text = buildingPlayer1 ? "Player 1 Building" : "Player 2 Building";
+            playerText.text = buildingPlayer1 ? "Player 1" : "Player 2";
 
         if (raceText != null)
-            raceText.text = currentRace != null ? "Race: " + currentRace.raceName : "Race: None";
+            raceText.text = currentRace != null ? currentRace.raceName : "Race: None";
 
         if (remainingText != null)
         {
             int remaining = deckBuildSettings.totalDeckSize - currentDeck.Count;
-            remainingText.text = "Remaining Picks: " + remaining;
+            remainingText.text = remaining + " more cards";
         }
     }
 
