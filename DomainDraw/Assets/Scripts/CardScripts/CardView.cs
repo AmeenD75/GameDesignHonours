@@ -1,6 +1,5 @@
 //using TMPro;
 //using UnityEngine;
-
 //public class CardView : MonoBehaviour
 //{
 //    [SerializeField] private TMP_Text title;
@@ -15,67 +14,95 @@
 //    {
 //        Card = card;
 //        title.text = card.Title;
-//        description.text = card.description;
-//        type.text = card.ctype;
-//        imageSR.sprite = card.image;
-
+//        description.text = card.Description;
+//        type.text = card.Type.ToString();
+//        imageSR.sprite = card.Image;
 //    }
 
-//    //void OnMouseEnter()
-//    //{
-//    //    wrapper.SetActive(false);
-//    //    Vector3 pos = new(transform.position.x, -2, 0);
-//    //    CardViewHoverSystem.Instance.Show(Card, pos);
-
-//    //    Debug.Log("Card hover ENTER: " + name);
-//    //    Debug.Assert(CardViewHoverSystem.Instance != null, "No CardViewHoverSystem in the scene");
-//    //    Debug.Assert(Card != null, "Card is null on hover (Setup not run?)");
-
-//    //}
-
-//    //void OnMouseExit()
-//    //{
-//    //    CardViewHoverSystem.Instance.Hide();
-//    //    wrapper.SetActive(true);
-//    //}
-
-//   public void HoverEnter()
+//    public void HoverEnter()
 //    {
-//        // DO NOT disable the object containing the collider
-//        wrapper.SetActive(false);  // risky if wrapper includes collider/visuals
-//        Vector3 pos = new(transform.position.x, -2, 0);
-//        CardViewHoverSystem.Instance.Show(Card, pos);
+//        if (wrapper != null)
+//            wrapper.SetActive(false);
 
-
+//        if (CardViewHoverSystem.Instance != null && Card != null)
+//        {
+//            Vector3 pos = new(transform.position.x, -2, 0);
+//            CardViewHoverSystem.Instance.Show(Card, pos);
+//        }
 //    }
 
 //    public void HoverExit()
 //    {
-//        CardViewHoverSystem.Instance.Hide();
-//         wrapper.SetActive(true);
+//        if (CardViewHoverSystem.Instance != null)
+//            CardViewHoverSystem.Instance.Hide();
+
+//        if (wrapper != null)
+//            wrapper.SetActive(true);
 //    }
 
+//    public void SetSelected(bool selected)
+//    {
+//        transform.localScale = selected ? Vector3.one * 1.2f : Vector3.one;
+//    }
 //}
+
 
 using TMPro;
 using UnityEngine;
+
 public class CardView : MonoBehaviour
 {
+    [Header("Text")]
     [SerializeField] private TMP_Text title;
-    [SerializeField] private TMP_Text type;
     [SerializeField] private TMP_Text description;
+    [SerializeField] private TMP_Text effectText;
+
+    [Header("Sprites")]
     [SerializeField] private SpriteRenderer imageSR;
+    [SerializeField] private SpriteRenderer wrapperBackSR;
+    [SerializeField] private SpriteRenderer typeIconSR;
+
+    [Header("Type Icons")]
+    [SerializeField] private Sprite attackIcon;
+    [SerializeField] private Sprite defenseIcon;
+    [SerializeField] private Sprite supportIcon;
+
+    [Header("Hover / Selection")]
     [SerializeField] private GameObject wrapper;
+    [SerializeField] private float selectedScale = 1.2f;
 
     public Card Card { get; private set; }
+
+    private Vector3 defaultScale;
+
+    private void Awake()
+    {
+        defaultScale = transform.localScale;
+    }
 
     public void Setup(Card card)
     {
         Card = card;
-        title.text = card.Title;
-        description.text = card.Description;
-        type.text = card.Type.ToString();
-        imageSR.sprite = card.Image;
+
+        if (description != null)
+            title.text = card.Title;
+
+        if (description != null)
+            description.text = card.Description;
+
+        if (effectText != null)
+            effectText.text = card.EffectText;
+
+        if (imageSR != null)
+            imageSR.sprite = card.Image;
+
+        if (wrapperBackSR != null)
+            wrapperBackSR.sprite = card.CardBack;
+
+        if (typeIconSR != null)
+            typeIconSR.sprite = GetTypeIcon(card.Type);
+
+        SetSelected(false);
     }
 
     public void HoverEnter()
@@ -85,7 +112,7 @@ public class CardView : MonoBehaviour
 
         if (CardViewHoverSystem.Instance != null && Card != null)
         {
-            Vector3 pos = new(transform.position.x, -2, 0);
+            Vector3 pos = new Vector3(transform.position.x, -2f, 0f);
             CardViewHoverSystem.Instance.Show(Card, pos);
         }
     }
@@ -101,6 +128,24 @@ public class CardView : MonoBehaviour
 
     public void SetSelected(bool selected)
     {
-        transform.localScale = selected ? Vector3.one * 1.2f : Vector3.one;
+        transform.localScale = selected ? defaultScale * selectedScale : defaultScale;
+    }
+
+    private Sprite GetTypeIcon(CardType type)
+    {
+        switch (type)
+        {
+            case CardType.Attack:
+                return attackIcon;
+
+            case CardType.Defense:
+                return defenseIcon;
+
+            case CardType.Support:
+                return supportIcon;
+
+            default:
+                return null;
+        }
     }
 }
