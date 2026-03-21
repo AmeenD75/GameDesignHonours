@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: Minor Strike
+  m_Name: Forrest Wrath
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: Minor Strike
-  <Description>k__BackingField: Stike an Enemy
+  <Title>k__BackingField: Forrest Wrath
+  <Description>k__BackingField: Vines and roots lash out to strike the opponent
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: -7841552460602954984, guid: bcbbbc5a6d1223e4a8112ec42ab1d6ee, type: 3}
+  <Image>k__BackingField: {fileID: 6769840852060652526, guid: 511662fc8d4b4e546b7af87813682eda, type: 3}
   <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
-  <DamageToEnemy>k__BackingField: 10
+  <DamageToEnemy>k__BackingField: 7
   <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: 6
+  <TerrainDamage>k__BackingField: 4
   <SelfDamage>k__BackingField: 0
   <BlockAmount>k__BackingField: 0

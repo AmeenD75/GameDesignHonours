@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: BarkSkin Ward
+  m_Name: Nature's Embrace
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: Barkskin ward
-  <Description>k__BackingField: Druid Block
-  <Type>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 7114007261358464178, guid: 8e2c77e5336bf94439ab8db4df9f11e1, type: 3}
+  <Title>k__BackingField: Natures Blessing
+  <Description>k__BackingField: Natural energy flows through the druid, restoring
+    health
+  <Type>k__BackingField: 2
+  <Image>k__BackingField: {fileID: 8323633935264501841, guid: c4b72e0d664f93f4a9f7d26f6a1b9b0a, type: 3}
   <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
   <DamageToEnemy>k__BackingField: 0
-  <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: -8
+  <HealSelf>k__BackingField: 9
+  <TerrainDamage>k__BackingField: 3
   <SelfDamage>k__BackingField: 0
-  <BlockAmount>k__BackingField: 15
+  <BlockAmount>k__BackingField: 0

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: Shield Block
+  m_Name: Power Lunge
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: Shield Block
-  <Description>k__BackingField: An energy shield absorbs incoming damage
-  <Type>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 6149890715495779623, guid: a7f9e1ed3e8619c4eaaae99510c85d3c, type: 3}
+  <Title>k__BackingField: Power Lunge
+  <Description>k__BackingField: A quick forward thrust targeting weak points
+  <Type>k__BackingField: 0
+  <Image>k__BackingField: {fileID: -8707341784651265799, guid: 3ccc352ca6335a14c97c7cd7d4752307, type: 3}
   <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
-  <DamageToEnemy>k__BackingField: 0
+  <DamageToEnemy>k__BackingField: 5
   <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: -1
+  <TerrainDamage>k__BackingField: 2
   <SelfDamage>k__BackingField: 0
-  <BlockAmount>k__BackingField: 3
+  <BlockAmount>k__BackingField: 0
