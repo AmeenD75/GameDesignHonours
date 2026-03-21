@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Title>k__BackingField: Fireball Breath
-  <Description>k__BackingField: 15 Enemy Damage<br>15 Terrain Damage
+  <Description>k__BackingField: FireBall Attack
   <Type>k__BackingField: 0
   <Image>k__BackingField: {fileID: 21300000, guid: 8c4e6759471a8ff429dac798cabf3cf6, type: 3}
+  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
   <DamageToEnemy>k__BackingField: 15
   <HealSelf>k__BackingField: 0
   <TerrainDamage>k__BackingField: 15

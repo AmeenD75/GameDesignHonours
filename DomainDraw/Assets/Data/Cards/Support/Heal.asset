@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Heal
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Title>k__BackingField: MInor Heal Restore
-  <Description>k__BackingField: Heal 5 HP
+  <Description>k__BackingField: Basic Heal
   <Type>k__BackingField: 2
   <Image>k__BackingField: {fileID: 1165713695056719183, guid: edbe4757b6ec64a41a4862c072094645, type: 3}
+  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 5
   <TerrainDamage>k__BackingField: -3
   <SelfDamage>k__BackingField: 0
+  <BlockAmount>k__BackingField: 0

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Dragon Scale
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Title>k__BackingField: Dragon Scale
-  <Description>k__BackingField: Block 10 Domain 5
-  <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 0}
+  <Description>k__BackingField: Dragonborn Block
+  <Type>k__BackingField: 1
+  <Image>k__BackingField: {fileID: -5341422293637782054, guid: e0e29f44c5f777a418b701a0bba819c5, type: 3}
+  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 0
   <TerrainDamage>k__BackingField: -5
