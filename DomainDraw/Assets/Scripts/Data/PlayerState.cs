@@ -5,6 +5,7 @@ public class PlayerState
 {
     public string playerName = "Player";
     public int hp = 50;
+    public int maxHP = 50;
 
     public int block = 0;
     public int blockTurnsRemaining = 0;

@@ -1090,6 +1090,7 @@ MonoBehaviour:
   player1State:
     playerName: Player 1
     hp: 50
+    maxHP: 50
     block: 0
     blockTurnsRemaining: 0
     timeRemaining: 120
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   player2State:
     playerName: Player 2
     hp: 50
+    maxHP: 50
     block: 0
     blockTurnsRemaining: 0
     timeRemaining: 120
@@ -1269,6 +1271,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1938679263}
     m_Modifications:
+    - target: {fileID: 747264763502891, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 747264763502891, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967291815750204454, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967291815750204454, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2971880137334149634, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1308,6 +1326,14 @@ PrefabInstance:
     - target: {fileID: 4612696347021345873, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656981481600538343, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656981481600538343, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 259.65
       objectReference: {fileID: 0}
     - target: {fileID: 4682305942027250889, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1421,10 +1447,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6930530551758651032, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930530551758651032, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7319673015165538174, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 971339159}
+    - target: {fileID: 7911629442308996417, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 201
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911629442308996417, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -257.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078598070273143915, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078598070273143915, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8450405933153598201, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

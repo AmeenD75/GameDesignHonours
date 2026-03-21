@@ -24,8 +24,11 @@ public class GameManager : MonoBehaviour
     public PlayerState player1State = new PlayerState { playerName = "Player 1", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
     public PlayerState player2State = new PlayerState { playerName = "Player 2", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
 
+
     [Header("Battle Stats")]
     public int terrainHP = 40;
+    private int terrainMaxHP;
+
 
     [Header("Turn State")]
     public bool player1Turn = true;
@@ -59,6 +62,8 @@ public class GameManager : MonoBehaviour
         ApplySelectedRaces();
         ApplySelectedDomain();
 
+        player1State.maxHP = player1State.hp;
+        player2State.maxHP = player2State.hp;
         cardSystem.DrawStartingHands(player1State, player2State);
         UpdateUI();
 
@@ -318,9 +323,9 @@ public class GameManager : MonoBehaviour
 
     private void ClampValues()
     {
-        player1State.hp = Mathf.Max(0, player1State.hp);
-        player2State.hp = Mathf.Max(0, player2State.hp);
-        terrainHP = Mathf.Max(0, terrainHP);
+        player1State.hp = Mathf.Clamp(player1State.hp, 0, player1State.maxHP);
+        player2State.hp = Mathf.Clamp(player2State.hp, 0, player2State.maxHP);
+        terrainHP = Mathf.Clamp(terrainHP, 0, terrainMaxHP);
     }
 
     private void CheckWin()
@@ -475,9 +480,14 @@ public class GameManager : MonoBehaviour
         if (domain != null)
         {
             terrainHP = domain.startingTerrainHP;
+            terrainMaxHP = terrainHP;
 
             if (battleBackgroundRenderer != null)
                 battleBackgroundRenderer.sprite = domain.backgroundImage;
+        }
+        else
+        {
+            terrainMaxHP = terrainHP;
         }
     }
 
