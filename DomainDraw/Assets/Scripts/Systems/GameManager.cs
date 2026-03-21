@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ApplySelectedRaces();
+        ApplySelectedDecks();
         ApplySelectedDomain();
 
         player1State.maxHP = player1State.hp;
@@ -491,6 +492,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ApplySelectedDecks()
+    {
+        if (MatchSetup.player1Deck != null)
+            player1State.deck = new List<CardData>(MatchSetup.player1Deck);
+
+        if (MatchSetup.player2Deck != null)
+            player2State.deck = new List<CardData>(MatchSetup.player2Deck);
+    }
     #endregion
 
 

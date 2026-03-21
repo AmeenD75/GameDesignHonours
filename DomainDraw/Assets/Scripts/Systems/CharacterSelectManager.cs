@@ -20,7 +20,7 @@ public class CharacterSelectManager : MonoBehaviour
     public TMP_Text continueButtonText;
 
     [Header("Scene Flow")]
-    public string nextSceneName = "DomainSelection";
+    public string nextSceneName = "DeckModeSelectScene";
 
     private int currentRaceIndex = 0;
     private bool choosingPlayer1 = true;
