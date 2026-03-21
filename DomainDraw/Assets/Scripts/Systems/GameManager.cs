@@ -7,6 +7,19 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     #endregion
 
+    [Header("Debug Race Assignment")]
+    public RaceData debugPlayer1Race;
+    public RaceData debugPlayer2Race;
+
+    [Header("Debug Domain Assignment")]
+    public DomainData debugDomain;
+
+    [Header("Battle Visuals")]
+    public SpriteRenderer battleBackgroundRenderer;
+
+    [Header("End Screen")]
+    public BattleEndUIController battleEndUI;
+
     [Header("Players")]
     public PlayerState player1State = new PlayerState { playerName = "Player 1", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
     public PlayerState player2State = new PlayerState { playerName = "Player 2", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
@@ -43,6 +56,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        ApplySelectedRaces();
+        ApplySelectedDomain();
+
         cardSystem.DrawStartingHands(player1State, player2State);
         UpdateUI();
 
@@ -61,24 +77,18 @@ public class GameManager : MonoBehaviour
         if (currentPlayer.timeRemaining <= 0f)
         {
             currentPlayer.timeRemaining = 0f;
-            gameOver = true;
 
             if (player1Turn)
             {
-                battleUI.SetTurnText("Player 2 Wins! (Time)");
                 AddBattleLog("Player 1 ran out of time. Player 2 wins.");
+                HandleGameOver("Player 2 Wins! (Time)");
             }
             else
             {
-                battleUI.SetTurnText("Player 1 Wins! (Time)");
                 AddBattleLog("Player 2 ran out of time. Player 1 wins.");
+                HandleGameOver("Player 1 Wins! (Time)");
             }
 
-            if (handView != null)
-                handView.ClearHand();
-
-            battleUI.HideTurnOverlay();
-            UpdateUI();
             return;
         }
 
@@ -257,19 +267,11 @@ public class GameManager : MonoBehaviour
             return;
 
         AddBattleLog(player1Turn ? "Player 1 forfeited." : "Player 2 forfeited.");
-        gameOver = true;
 
         if (player1Turn)
-            battleUI.SetTurnText("Player 2 Wins! (Forfeit)");
+            HandleGameOver("Player 2 Wins! (Forfeit)");
         else
-            battleUI.SetTurnText("Player 1 Wins! (Forfeit)");
-
-        battleUI.HideTurnOverlay();
-
-        if (handView != null)
-            handView.ClearHand();
-
-        UpdateUI();
+            HandleGameOver("Player 1 Wins! (Forfeit)");
     }
     #endregion
 
@@ -317,25 +319,22 @@ public class GameManager : MonoBehaviour
     {
         if (player1State.hp <= 0)
         {
-            gameOver = true;
-            battleUI.SetTurnText("Player 2 Wins!");
             AddBattleLog("Player 2 wins.");
+            HandleGameOver("Player 2 Wins!");
             return;
         }
 
         if (player2State.hp <= 0)
         {
-            gameOver = true;
-            battleUI.SetTurnText("Player 1 Wins!");
             AddBattleLog("Player 1 wins.");
+            HandleGameOver("Player 1 Wins!");
             return;
         }
 
         if (terrainHP <= 0)
         {
-            gameOver = true;
-            battleUI.SetTurnText("Terrain Destroyed! It's a Draw!");
             AddBattleLog("The terrain was destroyed. Draw.");
+            HandleGameOver("Terrain Destroyed! It's a Draw!");
         }
     }
     #endregion
@@ -439,6 +438,59 @@ public class GameManager : MonoBehaviour
     private void AddBattleLog(string message)
     {
         battleUI.AddBattleLog(message);
+    }
+    #endregion
+
+    #region Character & Domain Selection
+    private void ApplySelectedRaces()
+    {
+        RaceData p1Race = MatchSetup.player1Race != null ? MatchSetup.player1Race : debugPlayer1Race;
+        RaceData p2Race = MatchSetup.player2Race != null ? MatchSetup.player2Race : debugPlayer2Race;
+
+        if (p1Race != null)
+        {
+            player1State.playerName = p1Race.raceName;
+            player1State.deck = new List<CardData>(p1Race.cardPool);
+        }
+
+        if (p2Race != null)
+        {
+            player2State.playerName = p2Race.raceName;
+            player2State.deck = new List<CardData>(p2Race.cardPool);
+        }
+    }
+
+    private void ApplySelectedDomain()
+    {
+        DomainData domain = MatchSetup.selectedDomain != null ? MatchSetup.selectedDomain : debugDomain;
+
+        if (domain != null)
+        {
+            terrainHP = domain.startingTerrainHP;
+
+            if (battleBackgroundRenderer != null)
+                battleBackgroundRenderer.sprite = domain.backgroundImage;
+        }
+    }
+
+    #endregion
+
+
+    #region Game Over
+    private void HandleGameOver(string message)
+    {
+        gameOver = true;
+
+        battleUI.SetTurnText(message);
+        battleUI.HideTurnOverlay();
+
+        if (handView != null)
+            handView.ClearHand();
+
+        UpdateUI();
+
+        if (battleEndUI != null)
+            battleEndUI.ShowEndScreen(message);
     }
     #endregion
 }
