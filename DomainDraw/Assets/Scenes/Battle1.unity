@@ -1101,7 +1101,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0c089b1d84c1151499809b3f39247663, type: 2}
     - {fileID: 11400000, guid: 8f03c416d5de06c4f82af7c48cf29fc4, type: 2}
     - {fileID: 11400000, guid: cf4467b5200d2f745ac6e761dc4cd461, type: 2}
-    - {fileID: 11400000, guid: 65ab836fcd1b598458f4c076c8c8c3dc, type: 2}
+    - {fileID: 11400000, guid: c80756eb460a21d4b9f43fac2f35468f, type: 2}
+    - {fileID: 11400000, guid: 6c9d46074e7702745be5cfabb60d9fc0, type: 2}
   player2State:
     playerName: Player 2
     hp: 50

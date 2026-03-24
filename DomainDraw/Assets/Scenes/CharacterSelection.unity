@@ -999,7 +999,7 @@ MonoBehaviour:
   racePortraitImage: {fileID: 1215470407}
   infoText: {fileID: 414130583}
   continueButtonText: {fileID: 62731899}
-  nextSceneName: DomainSelection
+  nextSceneName: DeckModeSelectScreen
 --- !u!1 &878276648
 GameObject:
   m_ObjectHideFlags: 0
