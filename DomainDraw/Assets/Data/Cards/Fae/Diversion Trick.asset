@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: BarkSkin Ward
+  m_Name: Diversion Trick
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: Ancient Roots
-  <Description>k__BackingField: Deep roots stabilise the domain and block incoming
-    damage
-  <Type>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 7114007261358464178, guid: 8e2c77e5336bf94439ab8db4df9f11e1, type: 3}
-  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
+  <Title>k__BackingField: 
+  <Description>k__BackingField: 
+  <Type>k__BackingField: 0
+  <Image>k__BackingField: {fileID: 0}
+  <CardBack>k__BackingField: {fileID: 0}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: -5
+  <TerrainDamage>k__BackingField: 0
   <SelfDamage>k__BackingField: 0
-  <BlockAmount>k__BackingField: 4
+  <BlockAmount>k__BackingField: 0
