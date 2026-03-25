@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: Piercing Jab
+  m_Name: GraveCollapse
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: Piercing Jab
-  <Description>k__BackingField: A powerful punch lands accurately
+  <Title>k__BackingField: GraveCollapse
+  <Description>k__BackingField: Necrotic energy erupts from the ground
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 7105328639281520541, guid: bb1ade66491a7294aaf93372bad7a2b3, type: 3}
+  <Image>k__BackingField: {fileID: 8840468024627641660, guid: aa72cc6268c5e6543ad888bbb2307514, type: 3}
   <CardBack>k__BackingField: {fileID: 1769983739629936620, guid: ecc7b012c4575604f8094e84d35240a7, type: 3}
-  <DamageToEnemy>k__BackingField: 4
+  <DamageToEnemy>k__BackingField: 8
   <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: 2
-  <SelfDamage>k__BackingField: 1
+  <TerrainDamage>k__BackingField: 5
+  <SelfDamage>k__BackingField: 0
   <BlockAmount>k__BackingField: 0

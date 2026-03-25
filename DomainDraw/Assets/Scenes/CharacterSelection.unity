@@ -993,6 +993,7 @@ MonoBehaviour:
   availableRaces:
   - {fileID: 11400000, guid: f659f8f33dd100946be40edae22d5adc, type: 2}
   - {fileID: 11400000, guid: 7ecdd73d2a1809e46b48eaafbfb2b3dd, type: 2}
+  - {fileID: 11400000, guid: 0e2413b17a8c4d545b4940a70169250a, type: 2}
   titleText: {fileID: 1146823041}
   raceNameText: {fileID: 1438723399}
   raceDescriptionText: {fileID: 1775345841}
@@ -1370,7 +1371,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: eea477a81bff9014696afee3d5ce9e66, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

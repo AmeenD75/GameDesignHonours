@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Draconic Scale
   <Description>k__BackingField: Hardened dragon scales absorb incoming damage
   <Type>k__BackingField: 1
-  <Image>k__BackingField: {fileID: -5341422293637782054, guid: e0e29f44c5f777a418b701a0bba819c5, type: 3}
+  <Image>k__BackingField: {fileID: -2699217566438925110, guid: 0230fd8e4632fed4090029e4ba52f421, type: 3}
   <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 0
