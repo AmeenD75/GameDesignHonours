@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
   m_Name: Ironhide Guide
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: 
-  <Description>k__BackingField: 
-  <Type>k__BackingField: 0
+  <Title>k__BackingField: Ironhide Guard
+  <Description>k__BackingField: Thick armour absorbs powerful blows
+  <Type>k__BackingField: 1
   <Image>k__BackingField: {fileID: 0}
-  <CardBack>k__BackingField: {fileID: 0}
+  <CardBack>k__BackingField: {fileID: -8191883414910022116, guid: 55d282f9ca1586a48a80a95ac659b60c, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: 0
+  <TerrainDamage>k__BackingField: -3
   <SelfDamage>k__BackingField: 0
-  <BlockAmount>k__BackingField: 0
+  <BlockAmount>k__BackingField: 5

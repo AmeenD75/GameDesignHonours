@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
   m_Name: Moonlight Restoration
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: 
-  <Description>k__BackingField: 
-  <Type>k__BackingField: 0
+  <Title>k__BackingField: Moonlight Restoration
+  <Description>k__BackingField: "Moonlight magic heals the Fae\u2019s wounds"
+  <Type>k__BackingField: 2
   <Image>k__BackingField: {fileID: 0}
-  <CardBack>k__BackingField: {fileID: 0}
+  <CardBack>k__BackingField: {fileID: -3317921036452310665, guid: 8dced9454a865284f97c2d88b3972de6, type: 3}
   <DamageToEnemy>k__BackingField: 0
-  <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: 0
+  <HealSelf>k__BackingField: 8
+  <TerrainDamage>k__BackingField: 2
   <SelfDamage>k__BackingField: 0
   <BlockAmount>k__BackingField: 0

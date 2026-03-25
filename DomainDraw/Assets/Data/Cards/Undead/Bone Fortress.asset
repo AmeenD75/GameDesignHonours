@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: DragonHeart Renewal
+  m_Name: Bone Fortress
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: DragonHeart Renewal
-  <Description>k__BackingField: "Ancient dragon vitality restores the warrior\u2019s
-    strength"
-  <Type>k__BackingField: 2
-  <Image>k__BackingField: {fileID: 3917325740414457252, guid: fcc1cd063b0f0f546a20d76f96f45d79, type: 3}
-  <CardBack>k__BackingField: {fileID: 3372222743108765089, guid: 920b4e0d005de4a44be1bf5d09124228, type: 3}
+  <Title>k__BackingField: Bone Fortress
+  <Description>k__BackingField: A wall of bones forms to block incoming damage
+  <Type>k__BackingField: 1
+  <Image>k__BackingField: {fileID: 0}
+  <CardBack>k__BackingField: {fileID: 7900875109557949567, guid: ce4ef6ba7ea5da64d96fcd206b41316d, type: 3}
   <DamageToEnemy>k__BackingField: 0
-  <HealSelf>k__BackingField: 8
+  <HealSelf>k__BackingField: 0
   <TerrainDamage>k__BackingField: 4
   <SelfDamage>k__BackingField: 0
-  <BlockAmount>k__BackingField: 0
+  <BlockAmount>k__BackingField: 7

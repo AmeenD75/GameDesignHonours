@@ -17,7 +17,7 @@ MonoBehaviour:
     land
   <Type>k__BackingField: 2
   <Image>k__BackingField: {fileID: -2567843648565599067, guid: ebd80b6625d714f41a26a2af74702b81, type: 3}
-  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
+  <CardBack>k__BackingField: {fileID: 6910378968591252715, guid: dae6a47436629c04084e39ad9bf0de94, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 7
   <TerrainDamage>k__BackingField: -2

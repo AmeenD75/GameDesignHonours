@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: Inferno Surge
+  m_Name: Dark Resurrection
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: Inferno Surge
-  <Description>k__BackingField: Flames erupt forward, overwhelming the opponent with
-    intense heat.
-  <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 6413047375461539968, guid: 3d4f9babd6e79ab4d85ddce41f0415ac, type: 3}
-  <CardBack>k__BackingField: {fileID: 3372222743108765089, guid: 920b4e0d005de4a44be1bf5d09124228, type: 3}
-  <DamageToEnemy>k__BackingField: 8
-  <HealSelf>k__BackingField: 0
+  <Title>k__BackingField: Dark Resurrection
+  <Description>k__BackingField: Forbidden magic restores the undead warrior
+  <Type>k__BackingField: 2
+  <Image>k__BackingField: {fileID: 0}
+  <CardBack>k__BackingField: {fileID: 7900875109557949567, guid: ce4ef6ba7ea5da64d96fcd206b41316d, type: 3}
+  <DamageToEnemy>k__BackingField: 0
+  <HealSelf>k__BackingField: 9
   <TerrainDamage>k__BackingField: 5
   <SelfDamage>k__BackingField: 0
   <BlockAmount>k__BackingField: 0

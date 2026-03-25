@@ -16,7 +16,7 @@ MonoBehaviour:
   <Description>k__BackingField: Necrotic energy erupts from the ground
   <Type>k__BackingField: 0
   <Image>k__BackingField: {fileID: 8840468024627641660, guid: aa72cc6268c5e6543ad888bbb2307514, type: 3}
-  <CardBack>k__BackingField: {fileID: 1769983739629936620, guid: ecc7b012c4575604f8094e84d35240a7, type: 3}
+  <CardBack>k__BackingField: {fileID: 7900875109557949567, guid: ce4ef6ba7ea5da64d96fcd206b41316d, type: 3}
   <DamageToEnemy>k__BackingField: 8
   <HealSelf>k__BackingField: 0
   <TerrainDamage>k__BackingField: 5
