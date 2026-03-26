@@ -16,7 +16,7 @@ MonoBehaviour:
   <Description>k__BackingField: A precise kick sends the opponent flying back
   <Type>k__BackingField: 0
   <Image>k__BackingField: {fileID: 1436230636210502060, guid: e54c3d42f9cdaeb438ef9a7a03ef94b6, type: 3}
-  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
+  <CardBack>k__BackingField: {fileID: 1769983739629936620, guid: ecc7b012c4575604f8094e84d35240a7, type: 3}
   <DamageToEnemy>k__BackingField: 5
   <HealSelf>k__BackingField: 0
   <TerrainDamage>k__BackingField: 2

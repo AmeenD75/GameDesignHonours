@@ -17,7 +17,7 @@ MonoBehaviour:
     opponent
   <Type>k__BackingField: 0
   <Image>k__BackingField: {fileID: 5430480239879407191, guid: 3d4f9babd6e79ab4d85ddce41f0415ac, type: 3}
-  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
+  <CardBack>k__BackingField: {fileID: 3372222743108765089, guid: 920b4e0d005de4a44be1bf5d09124228, type: 3}
   <DamageToEnemy>k__BackingField: 7
   <HealSelf>k__BackingField: 0
   <TerrainDamage>k__BackingField: 5

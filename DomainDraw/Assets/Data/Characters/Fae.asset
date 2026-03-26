@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ff49b9d9ebc594fb64ec652a1504c8, type: 3}
+  m_Name: Fae
+  m_EditorClassIdentifier: Assembly-CSharp::RaceData
+  raceName: Fae
+  description: 
+  portrait: {fileID: -1512658751467261533, guid: 9c349dca79839f84db590ec299b79df4, type: 3}
+  cardPool:
+  - {fileID: 11400000, guid: ab72c09929e639947852fa5543936f44, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

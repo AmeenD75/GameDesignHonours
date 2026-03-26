@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
+  m_Name: Ground Shatter
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  <Title>k__BackingField: Ground Shatter
+  <Description>k__BackingField: "The ground cracks from the Orc\u2019s overwhelming
+    jump landing force"
+  <Type>k__BackingField: 0
+  <Image>k__BackingField: {fileID: -6664083463076890501, guid: 9235b93a3bd72c24f88f743c370785b7, type: 3}
+  <CardBack>k__BackingField: {fileID: -8191883414910022116, guid: 55d282f9ca1586a48a80a95ac659b60c, type: 3}
+  <DamageToEnemy>k__BackingField: 7
+  <HealSelf>k__BackingField: 0
+  <TerrainDamage>k__BackingField: 6
+  <SelfDamage>k__BackingField: 2
+  <BlockAmount>k__BackingField: 0

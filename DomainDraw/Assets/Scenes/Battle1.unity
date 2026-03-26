@@ -781,7 +781,7 @@ PrefabInstance:
     - target: {fileID: 7286220597375015388, guid: 17d213dc2d3810049bf602a80377966c, type: 3}
       propertyPath: attackIcon
       value: 
-      objectReference: {fileID: -1868213977662929508, guid: 1cd9e0a1ddde06643bb43a4a7a3e0e30, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7286220597375015388, guid: 17d213dc2d3810049bf602a80377966c, type: 3}
       propertyPath: effectText
       value: 
@@ -793,11 +793,11 @@ PrefabInstance:
     - target: {fileID: 7286220597375015388, guid: 17d213dc2d3810049bf602a80377966c, type: 3}
       propertyPath: defenseIcon
       value: 
-      objectReference: {fileID: 4740595020799419684, guid: 580200a65272da742b963a984cad593e, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7286220597375015388, guid: 17d213dc2d3810049bf602a80377966c, type: 3}
       propertyPath: supportIcon
       value: 
-      objectReference: {fileID: 2067178169485636385, guid: b498481a713cfed4e9bf782680b5843c, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7286220597375015388, guid: 17d213dc2d3810049bf602a80377966c, type: 3}
       propertyPath: wrapperBackSR
       value: 
