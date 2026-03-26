@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: War Axe Cleave
   <Description>k__BackingField: A brutal axe strike deals devastating damage
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: 5071841699731352605, guid: c72fc6992dd962d4599dffef4cc35978, type: 3}
   <CardBack>k__BackingField: {fileID: -8191883414910022116, guid: 55d282f9ca1586a48a80a95ac659b60c, type: 3}
   <DamageToEnemy>k__BackingField: 9
   <HealSelf>k__BackingField: 0

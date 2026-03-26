@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Ironhide Guard
   <Description>k__BackingField: Thick armour absorbs powerful blows
   <Type>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: 7262368303444656613, guid: 8470213004e4a6848bccbe39d5df1ac1, type: 3}
   <CardBack>k__BackingField: {fileID: -8191883414910022116, guid: 55d282f9ca1586a48a80a95ac659b60c, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 0

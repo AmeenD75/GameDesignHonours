@@ -16,7 +16,7 @@ MonoBehaviour:
   <Description>k__BackingField: "Ancient dragon vitality restores the warrior\u2019s
     strength"
   <Type>k__BackingField: 2
-  <Image>k__BackingField: {fileID: 3917325740414457252, guid: fcc1cd063b0f0f546a20d76f96f45d79, type: 3}
+  <Image>k__BackingField: {fileID: 8528080219181490220, guid: ab00023cef388cf4ca3a9a044c70dd34, type: 3}
   <CardBack>k__BackingField: {fileID: 3372222743108765089, guid: 920b4e0d005de4a44be1bf5d09124228, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 8

@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: Spirit Grove
+  m_Name: Sacred Mend
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Title>k__BackingField: Spirit Grove
-  <Description>k__BackingField: Spirits of nature strengthen both the druid and the
-    land
+  <Title>k__BackingField: Sacred Mend
+  <Description>k__BackingField: Sacred magic restores significant health
   <Type>k__BackingField: 2
-  <Image>k__BackingField: {fileID: 5725872871977202542, guid: 1d670ab972e75e64cb27dbc38202875d, type: 3}
-  <CardBack>k__BackingField: {fileID: 6910378968591252715, guid: dae6a47436629c04084e39ad9bf0de94, type: 3}
+  <Image>k__BackingField: {fileID: 0}
+  <CardBack>k__BackingField: {fileID: -7160016843544852083, guid: 497a4c02cbe826143a66398ca051a4c2, type: 3}
   <DamageToEnemy>k__BackingField: 0
-  <HealSelf>k__BackingField: 7
-  <TerrainDamage>k__BackingField: -2
+  <HealSelf>k__BackingField: 6
+  <TerrainDamage>k__BackingField: 3
   <SelfDamage>k__BackingField: 0
   <BlockAmount>k__BackingField: 0

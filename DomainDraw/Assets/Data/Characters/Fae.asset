@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ff49b9d9ebc594fb64ec652a1504c8, type: 3}
   m_Name: Fae
   m_EditorClassIdentifier: Assembly-CSharp::RaceData
-  raceName: 
+  raceName: Fae
   description: 
-  portrait: {fileID: 0}
-  cardPool: []
+  portrait: {fileID: -1512658751467261533, guid: 9c349dca79839f84db590ec299b79df4, type: 3}
+  cardPool:
+  - {fileID: 11400000, guid: ab72c09929e639947852fa5543936f44, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

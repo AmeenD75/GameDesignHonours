@@ -16,7 +16,7 @@ MonoBehaviour:
   <Description>k__BackingField: Natural energy flows through the druid, restoring
     health
   <Type>k__BackingField: 2
-  <Image>k__BackingField: {fileID: 8323633935264501841, guid: c4b72e0d664f93f4a9f7d26f6a1b9b0a, type: 3}
+  <Image>k__BackingField: {fileID: -6580150053440718615, guid: 83b935f9be445834dbdd6e74e234532b, type: 3}
   <CardBack>k__BackingField: {fileID: 6910378968591252715, guid: dae6a47436629c04084e39ad9bf0de94, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 9

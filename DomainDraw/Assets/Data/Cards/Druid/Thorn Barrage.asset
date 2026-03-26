@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Thorn Barrage
   <Description>k__BackingField: A storm of enchanted thorns strikes the enemy
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: -4500233594533257472, guid: d45ba1e15231fe64cb6a592c7ec81717, type: 3}
+  <Image>k__BackingField: {fileID: -4738109338099310754, guid: 458de7be415960c4fa2a05d74fa2a58d, type: 3}
   <CardBack>k__BackingField: {fileID: 6910378968591252715, guid: dae6a47436629c04084e39ad9bf0de94, type: 3}
   <DamageToEnemy>k__BackingField: 7
   <HealSelf>k__BackingField: 0

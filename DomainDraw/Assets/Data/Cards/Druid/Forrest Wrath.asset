@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Forrest Wrath
   <Description>k__BackingField: Vines and roots lash out to strike the opponent
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 6769840852060652526, guid: 511662fc8d4b4e546b7af87813682eda, type: 3}
+  <Image>k__BackingField: {fileID: -1343518637512107228, guid: f73655574a6960c47b6538dcee145e68, type: 3}
   <CardBack>k__BackingField: {fileID: 6910378968591252715, guid: dae6a47436629c04084e39ad9bf0de94, type: 3}
   <DamageToEnemy>k__BackingField: 7
   <HealSelf>k__BackingField: 0
