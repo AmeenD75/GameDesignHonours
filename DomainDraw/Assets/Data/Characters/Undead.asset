@@ -15,6 +15,7 @@ MonoBehaviour:
   raceName: Undead
   description: PlaceHolder
   portrait: {fileID: -8730811532367957942, guid: 5a7a2b7b97d995f459a5209bc1d2f99a, type: 3}
+  battleSprite: {fileID: -8730811532367957942, guid: 5a7a2b7b97d995f459a5209bc1d2f99a, type: 3}
   cardPool:
   - {fileID: 11400000, guid: ff7d0e9a09c0c524fb9e0c358f7b20da, type: 2}
   - {fileID: 11400000, guid: edc7aa91410c7234ba5bac7c93c77b90, type: 2}

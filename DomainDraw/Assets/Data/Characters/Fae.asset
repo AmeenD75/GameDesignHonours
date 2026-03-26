@@ -15,6 +15,7 @@ MonoBehaviour:
   raceName: Fae
   description: 
   portrait: {fileID: -1512658751467261533, guid: 9c349dca79839f84db590ec299b79df4, type: 3}
+  battleSprite: {fileID: -1512658751467261533, guid: 9c349dca79839f84db590ec299b79df4, type: 3}
   cardPool:
   - {fileID: 11400000, guid: ab72c09929e639947852fa5543936f44, type: 2}
   - {fileID: 0}
