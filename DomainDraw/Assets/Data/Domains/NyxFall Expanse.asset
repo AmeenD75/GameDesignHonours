@@ -16,5 +16,5 @@ MonoBehaviour:
   description: The StarGuide mysteriously vanished. The Expanse now selects its ruler
     through trial by mind and body. It rewards cleverness but brute force is always
     welcome.
-  backgroundImage: {fileID: 21300000, guid: ecd17311a1b6e844bb4860dc8e4d5052, type: 3}
+  backgroundImage: {fileID: 7253581225574604117, guid: afe426afa46d57e4dace89bdf34373f4, type: 3}
   startingTerrainHP: 100
