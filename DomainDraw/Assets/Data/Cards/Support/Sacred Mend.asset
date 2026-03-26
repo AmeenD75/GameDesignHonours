@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Sacred Mend
   <Description>k__BackingField: Sacred magic restores significant health
   <Type>k__BackingField: 2
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: -1966918295259097667, guid: 57863057da432364faaa8d80609f7a19, type: 3}
   <CardBack>k__BackingField: {fileID: -7160016843544852083, guid: 497a4c02cbe826143a66398ca051a4c2, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 6

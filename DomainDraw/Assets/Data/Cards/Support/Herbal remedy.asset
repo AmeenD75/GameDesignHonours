@@ -15,8 +15,8 @@ MonoBehaviour:
   <Title>k__BackingField: Herbal Remedy
   <Description>k__BackingField: Natural herbs mend wounds
   <Type>k__BackingField: 2
-  <Image>k__BackingField: {fileID: -4384993534431070294, guid: 3031406b1426f0a479f9a01f5a5bd104, type: 3}
-  <CardBack>k__BackingField: {fileID: 21300000, guid: 4054fe0113a54ed438f409f79bdb25af, type: 3}
+  <Image>k__BackingField: {fileID: -1966918295259097667, guid: 57863057da432364faaa8d80609f7a19, type: 3}
+  <CardBack>k__BackingField: {fileID: -7160016843544852083, guid: 497a4c02cbe826143a66398ca051a4c2, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 4
   <TerrainDamage>k__BackingField: -1

@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Diversion Trick
   <Description>k__BackingField: Trickster magic confuses and weakens incoming attacks
   <Type>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: -5841341180467459462, guid: 01d7af2198ffbf148be0e95848fd8b8e, type: 3}
   <CardBack>k__BackingField: {fileID: -3317921036452310665, guid: 8dced9454a865284f97c2d88b3972de6, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 0
