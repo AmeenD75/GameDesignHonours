@@ -15,7 +15,7 @@ MonoBehaviour:
   raceName: Orc
   description: 
   portrait: {fileID: 6362832775884612094, guid: 5c7d108cf898e5c48869865d01452ba1, type: 3}
-  battleSprite: {fileID: 6362832775884612094, guid: 5c7d108cf898e5c48869865d01452ba1, type: 3}
+  battleSprite: {fileID: -4578126311359895156, guid: 7bf6a9e71cc86934cac7678b5a4dfdca, type: 3}
   cardPool:
   - {fileID: 11400000, guid: c545d64503d88b44988c35e20d564c76, type: 2}
   - {fileID: 11400000, guid: be5efe9a95f8e984392cc2aacb2e090d, type: 2}

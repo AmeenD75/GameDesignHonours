@@ -1080,7 +1080,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -283.8, y: -147.59}
+  m_AnchoredPosition: {x: -283.8, y: -147}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &900685925
@@ -1096,6 +1096,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualController
   spriteRenderer: {fileID: 900685926}
+  idleSprite: {fileID: 0}
+  attackSprite: {fileID: 0}
+  hitSprite: {fileID: 0}
+  buffSprite: {fileID: 0}
+  moveAmount: 0.5
+  duration: 0.2
 --- !u!212 &900685926
 SpriteRenderer:
   serializedVersion: 2
@@ -1657,7 +1663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -278.03, y: -147.56}
+  m_AnchoredPosition: {x: -278.03, y: -147}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1655475386
@@ -1673,6 +1679,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualController
   spriteRenderer: {fileID: 1655475387}
+  idleSprite: {fileID: 0}
+  attackSprite: {fileID: 0}
+  hitSprite: {fileID: 0}
+  buffSprite: {fileID: 0}
+  moveAmount: 0.5
+  duration: 0.2
 --- !u!212 &1655475387
 SpriteRenderer:
   serializedVersion: 2
