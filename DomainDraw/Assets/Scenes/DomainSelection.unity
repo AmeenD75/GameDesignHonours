@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DomainSelectManager
   availableDomains:
   - {fileID: 11400000, guid: 4d8087e283e9d34449d2e3d4cf420e19, type: 2}
+  - {fileID: 11400000, guid: a8c1d548a54ee724a946018464412230, type: 2}
   titleText: {fileID: 494437739}
   domainNameText: {fileID: 2071338170}
   domainDescriptionText: {fileID: 950984808}
