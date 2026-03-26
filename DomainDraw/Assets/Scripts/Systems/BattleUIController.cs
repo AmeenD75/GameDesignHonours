@@ -35,10 +35,10 @@ public class BattleUIController : MonoBehaviour
     public void UpdateMainUI(PlayerState player1, PlayerState player2, int terrainHP, bool player1Turn, bool gameOver)
     {
         if (player1HPText != null)
-            player1HPText.text = "Player 1 HP: " + player1.hp;
+            player1HPText.text = "Player 1 HP: " + player1.hp + " / " + player1.maxHP;
 
         if (player2HPText != null)
-            player2HPText.text = "Player 2 HP: " + player2.hp;
+            player2HPText.text = "Player 2 HP: " + player2.hp + " / " + player2.maxHP;
 
         if (terrainHPText != null)
             terrainHPText.text = "Terrain HP: " + terrainHP;

@@ -31,14 +31,26 @@ public enum CardType { Attack, Defense, Support }
 [CreateAssetMenu(menuName = "Data/Card")]
 public class CardData : ScriptableObject
 {
+    [field: Header("Basic Info")]
     [field: SerializeField] public string Title { get; private set; }
-    [field: SerializeField] public string Description { get; private set; }
-    [field: SerializeField] public CardType Type { get; private set; }
-    [field: SerializeField] public Sprite Image { get; private set; }
 
+    [field: TextArea(2, 4)]
+    [field: SerializeField] public string Description { get; private set; }
+
+    [field: SerializeField] public CardType Type { get; private set; }
+
+    [field: Header("Visuals")]
+    [field: SerializeField] public Sprite Image { get; private set; }
+    [field: SerializeField] public Sprite CardBack { get; private set; }
+
+    [field: Header("Effects")]
     [field: SerializeField] public int DamageToEnemy { get; private set; }
     [field: SerializeField] public int HealSelf { get; private set; }
     [field: SerializeField] public int TerrainDamage { get; private set; }
     [field: SerializeField] public int SelfDamage { get; private set; }
     [field: SerializeField] public int BlockAmount { get; private set; }
 }
+
+
+
+ 

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
+  m_Name: DragonHeart Renewal
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  <Title>k__BackingField: DragonHeart Renewal
+  <Description>k__BackingField: "Ancient dragon vitality restores the warrior\u2019s
+    strength"
+  <Type>k__BackingField: 2
+  <Image>k__BackingField: {fileID: 8528080219181490220, guid: ab00023cef388cf4ca3a9a044c70dd34, type: 3}
+  <CardBack>k__BackingField: {fileID: 3372222743108765089, guid: 920b4e0d005de4a44be1bf5d09124228, type: 3}
+  <DamageToEnemy>k__BackingField: 0
+  <HealSelf>k__BackingField: 8
+  <TerrainDamage>k__BackingField: 4
+  <SelfDamage>k__BackingField: 0
+  <BlockAmount>k__BackingField: 0

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ff49b9d9ebc594fb64ec652a1504c8, type: 3}
+  m_Name: DragonBorn
+  m_EditorClassIdentifier: Assembly-CSharp::RaceData
+  raceName: Dragonborn
+  description: Flame Based Fighter
+  portrait: {fileID: -3297347845567284832, guid: c6c8908a3fa9083498829fe7ba46bc2a, type: 3}
+  cardPool:
+  - {fileID: 11400000, guid: 5a6fd195c44d2504ab958974c300e7fc, type: 2}
+  - {fileID: 11400000, guid: 14c0a21ee44b0a842914b5d54c447d1b, type: 2}
+  - {fileID: 11400000, guid: ceb5ce6d1a134e248bbd8a5691c348b5, type: 2}
+  - {fileID: 11400000, guid: 19d391a49a36513438a0a907a27fb3c2, type: 2}
+  - {fileID: 11400000, guid: 5df97d72484bb4847b1efe3c35963515, type: 2}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
+  m_Name: Forrest Wrath
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  <Title>k__BackingField: Forrest Wrath
+  <Description>k__BackingField: Vines and roots lash out to strike the opponent
+  <Type>k__BackingField: 0
+  <Image>k__BackingField: {fileID: -1343518637512107228, guid: f73655574a6960c47b6538dcee145e68, type: 3}
+  <CardBack>k__BackingField: {fileID: 6910378968591252715, guid: dae6a47436629c04084e39ad9bf0de94, type: 3}
+  <DamageToEnemy>k__BackingField: 7
+  <HealSelf>k__BackingField: 0
+  <TerrainDamage>k__BackingField: 4
+  <SelfDamage>k__BackingField: 0
+  <BlockAmount>k__BackingField: 0
