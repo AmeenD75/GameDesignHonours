@@ -15,6 +15,7 @@ MonoBehaviour:
   raceName: Druid
   description: Healing Based Fighter
   portrait: {fileID: 1943730341622241386, guid: 615868900a9dca147b3b8d35262b5f4f, type: 3}
+  battleSprite: {fileID: 1943730341622241386, guid: 615868900a9dca147b3b8d35262b5f4f, type: 3}
   cardPool:
   - {fileID: 11400000, guid: 0c089b1d84c1151499809b3f39247663, type: 2}
   - {fileID: 11400000, guid: 65ab836fcd1b598458f4c076c8c8c3dc, type: 2}

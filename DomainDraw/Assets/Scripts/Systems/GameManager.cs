@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     public PlayerState player2State = new PlayerState { playerName = "Player 2", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
 
 
+    [Header("Character Visuals")]
+    [SerializeField] private CharacterVisualController player1Character;
+    [SerializeField] private CharacterVisualController player2Character;
+
     [Header("Battle Stats")]
     public int terrainHP = 40;
     private int terrainMaxHP;
@@ -62,9 +66,11 @@ public class GameManager : MonoBehaviour
         ApplySelectedRaces();
         ApplySelectedDecks();
         ApplySelectedDomain();
+        ApplyCharacterVisuals();
 
         player1State.maxHP = player1State.hp;
         player2State.maxHP = player2State.hp;
+
         cardSystem.DrawStartingHands(player1State, player2State);
         UpdateUI();
 
@@ -175,11 +181,20 @@ public class GameManager : MonoBehaviour
         string currentPlayerName = player1Turn ? "Player 1" : "Player 2";
         string opponentName = player1Turn ? "Player 2" : "Player 1";
 
+
         AddBattleLog(currentPlayerName + " played " + card.Title + ".");
 
         if (card.DamageToEnemy > 0)
         {
             int dealt = ApplyDamage(opponent, opponentName, card.DamageToEnemy);
+
+            if (card.DamageToEnemy > 0)
+            {
+                if (player1Turn && player2Character != null)
+                    player2Character.PlayHit();
+                else if (!player1Turn && player1Character != null)
+                    player1Character.PlayHit();
+            }
             AddBattleLog(opponentName + " took " + dealt + " damage.");
         }
 
@@ -210,6 +225,16 @@ public class GameManager : MonoBehaviour
         {
             terrainHP -= card.TerrainDamage;
             AddBattleLog("Terrain was restored by " + (-card.TerrainDamage) + ".");
+        }
+
+        // Play animation for current player
+        if (player1Turn)
+        {
+            TriggerAnimation(player1Character, card.Type);
+        }
+        else
+        {
+            TriggerAnimation(player2Character, card.Type);
         }
 
         ClampValues();
@@ -502,6 +527,47 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+
+    #region Character Sprite Setup
+    private void ApplyCharacterVisuals()
+    {
+        RaceData p1Race = MatchSetup.player1Race != null ? MatchSetup.player1Race : debugPlayer1Race;
+        RaceData p2Race = MatchSetup.player2Race != null ? MatchSetup.player2Race : debugPlayer2Race;
+
+        Debug.Log("MatchSetup.player1Race = " + (MatchSetup.player1Race != null ? MatchSetup.player1Race.raceName : "NULL"));
+        Debug.Log("MatchSetup.player2Race = " + (MatchSetup.player2Race != null ? MatchSetup.player2Race.raceName : "NULL"));
+
+        Debug.Log("Applied P1 race = " + (p1Race != null ? p1Race.raceName : "NULL"));
+        Debug.Log("Applied P2 race = " + (p2Race != null ? p2Race.raceName : "NULL"));
+
+        if (player1Character != null)
+            player1Character.Setup(p1Race);
+
+        if (player2Character != null)
+            player2Character.Setup(p2Race);
+    }
+
+
+    private void TriggerAnimation(CharacterVisualController character, CardType type)
+    {
+        if (character == null)
+            return;
+
+        switch (type)
+        {
+            case CardType.Attack:
+                character.PlayAttack();
+                break;
+
+            case CardType.Defense:
+            case CardType.Support:
+                character.PlayBuff();
+                break;
+        }
+    }
+
+
+    #endregion
 
     #region Game Over
     private void HandleGameOver(string message)

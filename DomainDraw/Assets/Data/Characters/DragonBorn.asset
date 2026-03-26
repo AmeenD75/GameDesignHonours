@@ -15,6 +15,7 @@ MonoBehaviour:
   raceName: Dragonborn
   description: Flame Based Fighter
   portrait: {fileID: -3297347845567284832, guid: c6c8908a3fa9083498829fe7ba46bc2a, type: 3}
+  battleSprite: {fileID: -1364224909615855325, guid: 014ba9f24ac588b428a224288477c6b0, type: 3}
   cardPool:
   - {fileID: 11400000, guid: 5a6fd195c44d2504ab958974c300e7fc, type: 2}
   - {fileID: 11400000, guid: 14c0a21ee44b0a842914b5d54c447d1b, type: 2}

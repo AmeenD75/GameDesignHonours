@@ -10,6 +10,10 @@ public class RaceData : ScriptableObject
     public string description;
     public Sprite portrait;
 
+
+    [Header("Battle Visuals")]
+    public Sprite battleSprite;
+
     [Header("Card Pool")]
     public List<CardData> cardPool = new();
 }
