@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Bone Fortress
   <Description>k__BackingField: A wall of bones forms to block incoming damage
   <Type>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: -1218319769261631350, guid: 2d21bb12e26558b40b87fb1ab1ca0a6f, type: 3}
   <CardBack>k__BackingField: {fileID: 7900875109557949567, guid: ce4ef6ba7ea5da64d96fcd206b41316d, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 0

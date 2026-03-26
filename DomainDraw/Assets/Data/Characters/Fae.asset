@@ -17,7 +17,7 @@ MonoBehaviour:
   portrait: {fileID: -1512658751467261533, guid: 9c349dca79839f84db590ec299b79df4, type: 3}
   cardPool:
   - {fileID: 11400000, guid: ab72c09929e639947852fa5543936f44, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: c7b41653085c28d499c5f4dfe6b6792f, type: 2}
+  - {fileID: 11400000, guid: 4fee8129ace04bf41811e38bbd2598cb, type: 2}
+  - {fileID: 11400000, guid: c60b9f84598aa3f438387f8a756b7a36, type: 2}
+  - {fileID: 11400000, guid: 8733e2bc783a9fa46b14fb0e888f9e99, type: 2}

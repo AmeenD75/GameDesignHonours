@@ -16,7 +16,7 @@ MonoBehaviour:
   <Description>k__BackingField: The Dragonborn unleashes a powerful blast of flame
     scorching the battlefield
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 6870509921151519667, guid: bdbecf00095d28e439fb3ba24883fd3f, type: 3}
+  <Image>k__BackingField: {fileID: 5353841184698615464, guid: 7290aecf772f55c49b2a89b60ae44417, type: 3}
   <CardBack>k__BackingField: {fileID: 3372222743108765089, guid: 920b4e0d005de4a44be1bf5d09124228, type: 3}
   <DamageToEnemy>k__BackingField: 9
   <HealSelf>k__BackingField: 0

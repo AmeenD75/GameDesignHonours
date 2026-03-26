@@ -16,7 +16,7 @@ MonoBehaviour:
   <Description>k__BackingField: Flames erupt forward, overwhelming the opponent with
     intense heat.
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 6413047375461539968, guid: 3d4f9babd6e79ab4d85ddce41f0415ac, type: 3}
+  <Image>k__BackingField: {fileID: -5362391130542607791, guid: 20deacd006a75d0468d97c05269dd04f, type: 3}
   <CardBack>k__BackingField: {fileID: 3372222743108765089, guid: 920b4e0d005de4a44be1bf5d09124228, type: 3}
   <DamageToEnemy>k__BackingField: 8
   <HealSelf>k__BackingField: 0

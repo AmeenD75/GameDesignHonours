@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Arcane Nova
   <Description>k__BackingField: A burst of magical energy explodes toward the enemy
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: 2144355899712600083, guid: 5807964bf3a9be740afef95d149da116, type: 3}
   <CardBack>k__BackingField: {fileID: -3317921036452310665, guid: 8dced9454a865284f97c2d88b3972de6, type: 3}
   <DamageToEnemy>k__BackingField: 8
   <HealSelf>k__BackingField: 0

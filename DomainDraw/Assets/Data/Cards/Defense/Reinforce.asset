@@ -15,8 +15,8 @@ MonoBehaviour:
   <Title>k__BackingField: 
   <Description>k__BackingField: 
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 0}
-  <CardBack>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: 2229393127059038148, guid: 4eb6469ef632d6b418357fcb7ca67eb8, type: 3}
+  <CardBack>k__BackingField: {fileID: -5409504217163402587, guid: 6576d3c61ed0a8849a5b6a455207dff9, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 0
   <TerrainDamage>k__BackingField: 0

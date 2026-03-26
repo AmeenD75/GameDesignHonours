@@ -15,7 +15,7 @@ MonoBehaviour:
   <Title>k__BackingField: Soul Reaper
   <Description>k__BackingField: Necrotic energy erupts from the ground
   <Type>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 0}
+  <Image>k__BackingField: {fileID: 4103177835806832622, guid: 086322517bca02349ab0d66aa081601a, type: 3}
   <CardBack>k__BackingField: {fileID: 7900875109557949567, guid: ce4ef6ba7ea5da64d96fcd206b41316d, type: 3}
   <DamageToEnemy>k__BackingField: 7
   <HealSelf>k__BackingField: 0
