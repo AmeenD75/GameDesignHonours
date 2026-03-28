@@ -19,6 +19,6 @@ MonoBehaviour:
   <CardBack>k__BackingField: {fileID: -3317921036452310665, guid: 8dced9454a865284f97c2d88b3972de6, type: 3}
   <DamageToEnemy>k__BackingField: 0
   <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: -2
+  <TerrainDamage>k__BackingField: 3
   <SelfDamage>k__BackingField: 0
-  <BlockAmount>k__BackingField: 4
+  <BlockAmount>k__BackingField: 7

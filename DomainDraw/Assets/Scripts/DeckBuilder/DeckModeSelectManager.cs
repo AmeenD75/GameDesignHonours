@@ -98,13 +98,33 @@ public class DeckModeSelectManager : MonoBehaviour
             if (deck.Contains(card))
                 continue;
 
-            if (GetTypeCount(deck, card.Type) >= deckBuildSettings.maxPerType)
+            // NEW: Check the specific limit based on the card type
+            if (IsTypeLimitReached(deck, card.Type))
                 continue;
 
             deck.Add(card);
         }
 
         return deck;
+    }
+
+    // NEW HELPER METHOD: Compares current count against the specific setting
+    private bool IsTypeLimitReached(List<CardData> deck, CardType type)
+    {
+        int currentCount = GetTypeCount(deck, type);
+
+        // Note: Make sure these enum names match exactly what is in your CardType enum!
+        switch (type)
+        {
+            case CardType.Attack:
+                return currentCount >= deckBuildSettings.maxAttackCards;
+            case CardType.Defense:
+                return currentCount >= deckBuildSettings.maxDefenseCards;
+            case CardType.Support:
+                return currentCount >= deckBuildSettings.maxSupportCards;
+            default:
+                return false;
+        }
     }
 
     private int GetTypeCount(List<CardData> deck, CardType type)
@@ -119,6 +139,7 @@ public class DeckModeSelectManager : MonoBehaviour
 
         return count;
     }
+
     private void RefreshUI()
     {
         if (titleText != null)
