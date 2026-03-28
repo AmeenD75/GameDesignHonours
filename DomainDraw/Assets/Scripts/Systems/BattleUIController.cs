@@ -100,8 +100,8 @@ public class BattleUIController : MonoBehaviour
         if (turnOverlayText != null)
         {
             turnOverlayText.text = player1Turn
-                ? "Player 1 Turn\nPass the device"
-                : "Player 2 Turn\nPass the device";
+                ? "Pass the device\n    to Player 1"
+                : "Pass the device\n    to Player 2";
         }
     }
 
