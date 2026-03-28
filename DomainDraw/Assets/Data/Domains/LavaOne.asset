@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DomainData
   domainName: ScorchVeil
   description: 
-  backgroundImage: {fileID: -6034586809462529211, guid: 9e1bd7ad199339a49b0eb03e0dc091ac, type: 3}
+  backgroundImage: {fileID: -2361092091947223377, guid: aa8d9791c1fbc544fa02de66c6c993f0, type: 3}
   startingTerrainHP: 30
