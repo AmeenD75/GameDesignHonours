@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca3cb5f13c899548946246c55abba62, type: 3}
-  m_Name: Slice
+  m_Name: Blade Flurry
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Title>k__BackingField: Slice
-  <Description>k__BackingField: Slice A foe
+  <Description>k__BackingField: A rapid series of blade strikes
   <Type>k__BackingField: 0
   <Image>k__BackingField: {fileID: 6610078123382766652, guid: b5760d55216cd9f49b9ef29c0e71f65f, type: 3}
   <CardBack>k__BackingField: {fileID: 1769983739629936620, guid: ecc7b012c4575604f8094e84d35240a7, type: 3}
-  <DamageToEnemy>k__BackingField: 2
+  <DamageToEnemy>k__BackingField: 5
   <HealSelf>k__BackingField: 0
-  <TerrainDamage>k__BackingField: 1
-  <SelfDamage>k__BackingField: 0
+  <TerrainDamage>k__BackingField: 2
+  <SelfDamage>k__BackingField: 1
   <BlockAmount>k__BackingField: 0

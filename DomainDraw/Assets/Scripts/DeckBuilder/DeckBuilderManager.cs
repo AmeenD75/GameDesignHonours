@@ -117,7 +117,8 @@ public class DeckBuilderManager : MonoBehaviour
         if (currentDeck.Contains(card))
             return;
 
-        if (GetTypeCount(currentDeck, card.Type) >= deckBuildSettings.maxPerType)
+        // NEW: Check specific type limits instead of the general maxPerType
+        if (IsTypeLimitReached(currentDeck, card.Type))
             return;
 
         currentDeck.Add(card);
@@ -212,7 +213,10 @@ public class DeckBuilderManager : MonoBehaviour
             DeckBuilderLibraryCard instance = Instantiate(libraryCardPrefab, parent);
 
             bool isInDeck = currentDeck.Contains(card);
-            bool typeCapReached = !isInDeck && GetTypeCount(currentDeck, card.Type) >= deckBuildSettings.maxPerType;
+
+            // NEW: Use the helper to check if the specific cap is reached
+            bool typeCapReached = !isInDeck && IsTypeLimitReached(currentDeck, card.Type);
+
             bool deckFull = currentDeck.Count >= deckBuildSettings.totalDeckSize;
             bool canAdd = !isInDeck && !typeCapReached && !deckFull;
 
@@ -252,6 +256,24 @@ public class DeckBuilderManager : MonoBehaviour
                 return supportContent;
             default:
                 return null;
+        }
+    }
+
+    // NEW HELPER METHOD: Compares current count against the specific setting
+    private bool IsTypeLimitReached(List<CardData> deck, CardType type)
+    {
+        int currentCount = GetTypeCount(deck, type);
+
+        switch (type)
+        {
+            case CardType.Attack:
+                return currentCount >= deckBuildSettings.maxAttackCards;
+            case CardType.Defense:
+                return currentCount >= deckBuildSettings.maxDefenseCards;
+            case CardType.Support:
+                return currentCount >= deckBuildSettings.maxSupportCards;
+            default:
+                return false;
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TerrainUtils;
 
 public class BattleUIController : MonoBehaviour
 {
@@ -30,15 +31,23 @@ public class BattleUIController : MonoBehaviour
     public TMP_Text battleLogText;
     [SerializeField] private int maxBattleLogEntries = 8;
 
+    [Header("HP Bars")]
+    public HealthBarUI player1HPBar;
+    public HealthBarUI player2HPBar;
+    public HealthBarUI terrainHPBar;
+
+
     private readonly List<string> battleLogEntries = new();
 
     public void UpdateMainUI(PlayerState player1, PlayerState player2, int terrainHP, bool player1Turn, bool gameOver)
     {
         if (player1HPText != null)
             player1HPText.text = "Player 1 HP: " + player1.hp + " / " + player1.maxHP;
+            player1HPBar.SetAnimated(player1.hp, player1.maxHP);
 
         if (player2HPText != null)
             player2HPText.text = "Player 2 HP: " + player2.hp + " / " + player2.maxHP;
+            player2HPBar.SetAnimated(player2.hp, player2.maxHP);
 
         if (terrainHPText != null)
             terrainHPText.text = "Terrain HP: " + terrainHP;

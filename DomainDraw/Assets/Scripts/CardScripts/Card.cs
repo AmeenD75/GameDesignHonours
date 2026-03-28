@@ -29,21 +29,21 @@ public class Card
         List<string> effects = new();
 
         if (DamageToEnemy > 0)
-            effects.Add("Deal " + DamageToEnemy + " damage");
+            effects.Add("Opponent: -" + DamageToEnemy + "HP");
 
         if (HealSelf > 0)
-            effects.Add("Heal " + HealSelf);
+            effects.Add("Self: +" + HealSelf + "HP");
 
         if (SelfDamage > 0)
-            effects.Add("Take " + SelfDamage + " self-damage");
+            effects.Add("Self: -" + SelfDamage + "HP");
 
         if (BlockAmount > 0)
-            effects.Add("Gain " + BlockAmount + " block");
+            effects.Add("Self: +" + BlockAmount + "Shield");
 
         if (TerrainDamage > 0)
-            effects.Add("Damage terrain by " + TerrainDamage);
+            effects.Add("Domain: -" + TerrainDamage + "HP");
         else if (TerrainDamage < 0)
-            effects.Add("Restore terrain by " + (-TerrainDamage));
+            effects.Add("Domain: +" + (-TerrainDamage) + "HP");
 
         if (effects.Count == 0)
             return "No effect";
