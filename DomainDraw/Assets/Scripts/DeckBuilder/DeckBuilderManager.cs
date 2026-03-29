@@ -32,6 +32,8 @@ public class DeckBuilderManager : MonoBehaviour
 
     [Header("Scene Flow")]
     [SerializeField] private string nextSceneName = "DomainSelectScene";
+    [SerializeField] private string previousScene = "DeckModeSelectScreen";
+    
 
     private bool buildingPlayer1;
     private RaceData currentRace;
@@ -310,5 +312,10 @@ public class DeckBuilderManager : MonoBehaviour
         }
 
         spawnedDeckEntries.Clear();
+    }
+
+    public void ReturnToDeckModeSelect()
+    {
+        SceneManager.LoadScene(previousScene);
     }
 }

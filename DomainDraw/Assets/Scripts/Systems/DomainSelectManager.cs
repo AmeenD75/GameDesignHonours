@@ -18,6 +18,7 @@ public class DomainSelectManager : MonoBehaviour
 
     [Header("Scene Flow")]
     public string nextSceneName = "Battle1";
+    public string previousScene = "DeckModeSelectScreen";
 
     private int currentDomainIndex = 0;
 
@@ -115,5 +116,11 @@ public class DomainSelectManager : MonoBehaviour
             domainImage.sprite = domain.backgroundImage;
             domainImage.enabled = domain.backgroundImage != null;
         }
+    }
+
+    public void ReturnToDeckBuilder()
+    {
+        MatchSetup.selectedDomain = null;
+        SceneManager.LoadScene(previousScene);
     }
 }

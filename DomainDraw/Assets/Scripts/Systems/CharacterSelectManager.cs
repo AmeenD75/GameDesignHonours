@@ -20,7 +20,8 @@ public class CharacterSelectManager : MonoBehaviour
     public TMP_Text continueButtonText;
 
     [Header("Scene Flow")]
-    public string nextSceneName = "DeckModeSelectScene";
+    public string nextSceneName = "DeckModeSelectScreen";
+    public string mainMenuSceneName = "MainMenu";
 
     private int currentRaceIndex = 0;
     private bool choosingPlayer1 = true;
@@ -87,6 +88,10 @@ public class CharacterSelectManager : MonoBehaviour
         }
     }
 
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
     private void RefreshUI()
     {
         if (selectableRaces.Count == 0)

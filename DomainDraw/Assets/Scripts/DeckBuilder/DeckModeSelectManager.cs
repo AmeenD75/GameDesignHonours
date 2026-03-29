@@ -158,4 +158,11 @@ public class DeckModeSelectManager : MonoBehaviour
                 "Build Deck lets you choose the remaining cards yourself.";
         }
     }
+
+    public void ReturnToCharacterSelect()
+    {
+        MatchSetup.player1Deck = null;
+        MatchSetup.player2Deck = null;
+        SceneManager.LoadScene("CharacterSelection");
+    }
 }
