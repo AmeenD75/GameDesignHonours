@@ -59,7 +59,10 @@ public class DomainSelectManager : MonoBehaviour
             return;
 
         MatchSetup.selectedDomain = availableDomains[currentDomainIndex];
+        // This calls the static method we wrote earlier
+        
         SceneManager.LoadScene(nextSceneName);
+        PersistentMusic.StopMusic();
     }
 
     private void RefreshUI()

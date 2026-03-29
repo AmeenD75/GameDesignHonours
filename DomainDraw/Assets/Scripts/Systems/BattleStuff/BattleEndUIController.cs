@@ -44,5 +44,6 @@ public class BattleEndUIController : MonoBehaviour
         MatchSetup.selectedDomain = null;
 
         SceneManager.LoadScene(mainMenuSceneName);
+
     }
 }
