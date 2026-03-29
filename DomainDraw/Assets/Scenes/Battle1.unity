@@ -1194,12 +1194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualController
   spriteRenderer: {fileID: 900685926}
-  idleSprite: {fileID: 0}
-  attackSprite: {fileID: 0}
-  hitSprite: {fileID: 0}
-  buffSprite: {fileID: 0}
-  moveAmount: 0.5
-  duration: 0.2
+  frameRate: 0.08
+  moveDistance: 0.6
 --- !u!212 &900685926
 SpriteRenderer:
   serializedVersion: 2
@@ -2776,12 +2772,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualController
   spriteRenderer: {fileID: 1655475387}
-  idleSprite: {fileID: 0}
-  attackSprite: {fileID: 0}
-  hitSprite: {fileID: 0}
-  buffSprite: {fileID: 0}
-  moveAmount: 0.5
-  duration: 0.2
+  frameRate: 0.08
+  moveDistance: 0.6
 --- !u!212 &1655475387
 SpriteRenderer:
   serializedVersion: 2

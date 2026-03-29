@@ -1208,7 +1208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94b4c2e85798024db4d8544da17deb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
-  characterSelectSceneName: CharacterSelection
+  backstoryScene: Backstory
   helpSceneName: HelpScene
 --- !u!4 &1146309987
 Transform:

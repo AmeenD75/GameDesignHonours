@@ -17,7 +17,18 @@ MonoBehaviour:
     power. Their attacks are among the strongest, capable of overwhelming opponents-
     but often at great cost to the domain itself
   portrait: {fileID: -1364224909615855325, guid: 014ba9f24ac588b428a224288477c6b0, type: 3}
-  battleSprite: {fileID: -1364224909615855325, guid: 014ba9f24ac588b428a224288477c6b0, type: 3}
+  player1Idle: {fileID: -1364224909615855325, guid: 014ba9f24ac588b428a224288477c6b0, type: 3}
+  player1AttackFrames:
+  - {fileID: -248070816802240435, guid: 1af74ed4782b38b4e9dcc35e3b94ecbf, type: 3}
+  - {fileID: 3194088395428905483, guid: 1af74ed4782b38b4e9dcc35e3b94ecbf, type: 3}
+  - {fileID: -333012123980779170, guid: 1af74ed4782b38b4e9dcc35e3b94ecbf, type: 3}
+  - {fileID: -924699805319066208, guid: 1af74ed4782b38b4e9dcc35e3b94ecbf, type: 3}
+  player2Idle: {fileID: -8980234096406937294, guid: 351671a37aafc3946b92a0ef45236a0a, type: 3}
+  player2AttackFrames:
+  - {fileID: -8980234096406937294, guid: 351671a37aafc3946b92a0ef45236a0a, type: 3}
+  - {fileID: -788720496948597318, guid: 351671a37aafc3946b92a0ef45236a0a, type: 3}
+  - {fileID: -7820658738903918670, guid: 351671a37aafc3946b92a0ef45236a0a, type: 3}
+  - {fileID: -8345525706703370250, guid: 351671a37aafc3946b92a0ef45236a0a, type: 3}
   cardPool:
   - {fileID: 11400000, guid: 5a6fd195c44d2504ab958974c300e7fc, type: 2}
   - {fileID: 11400000, guid: 14c0a21ee44b0a842914b5d54c447d1b, type: 2}
