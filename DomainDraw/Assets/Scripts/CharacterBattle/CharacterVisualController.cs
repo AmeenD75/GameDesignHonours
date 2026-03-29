@@ -5,15 +5,12 @@ public class CharacterVisualController : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    [Header("Sprites")]
-    [SerializeField] private Sprite idleSprite;
-    [SerializeField] private Sprite attackSprite;
-    [SerializeField] private Sprite hitSprite;
-    [SerializeField] private Sprite buffSprite;
-
     [Header("Animation Settings")]
-    [SerializeField] private float moveAmount = 0.5f;
-    [SerializeField] private float duration = 0.2f;
+    [SerializeField] private float frameRate = 0.07f;
+    [SerializeField] private float moveDistance = 0.6f;
+
+    private Sprite idleSprite;
+    private Sprite[] attackFrames;
 
     private Vector3 originalPosition;
 
@@ -21,63 +18,53 @@ public class CharacterVisualController : MonoBehaviour
     {
         originalPosition = transform.position;
     }
-
-    public void Setup(RaceData race)
+    public void Setup(RaceData race, bool isPlayer1)
     {
         if (race == null || spriteRenderer == null)
             return;
 
-        spriteRenderer.sprite = race.battleSprite;
+        if (isPlayer1)
+        {
+            idleSprite = race.player1Idle;
+            attackFrames = race.player1AttackFrames;
+        }
+        else
+        {
+            idleSprite = race.player2Idle;
+            attackFrames = race.player2AttackFrames;
+        }
 
-        // Optional: set idle = battle sprite
-        idleSprite = race.battleSprite;
+        spriteRenderer.sprite = idleSprite;
     }
 
-    public void PlayAttack()
+    public IEnumerator PlayAttack()
     {
-        StartCoroutine(AttackAnimation());
+        yield return Move(Vector3.right * moveDistance);
+
+        if (attackFrames != null && attackFrames.Length > 0)
+        {
+            for (int i = 0; i < attackFrames.Length; i++)
+            {
+                spriteRenderer.sprite = attackFrames[i];
+                yield return new WaitForSeconds(frameRate);
+            }
+        }
+
+        yield return Move(Vector3.left * moveDistance);
+
+        ResetIdle();
     }
 
-    public void PlayHit()
+    public IEnumerator PlayHit()
     {
-        StartCoroutine(HitAnimation());
+        yield return Shake();
     }
 
-    public void PlayBuff()
+    public IEnumerator PlayBuff()
     {
-        StartCoroutine(BuffAnimation());
-    }
-
-    private IEnumerator AttackAnimation()
-    {
-        spriteRenderer.sprite = attackSprite != null ? attackSprite : idleSprite;
-
-        yield return Move(Vector3.right * moveAmount);
-
-        yield return Move(Vector3.left * moveAmount);
-
-        ResetToIdle();
-    }
-
-    private IEnumerator HitAnimation()
-    {
-        spriteRenderer.sprite = hitSprite != null ? hitSprite : idleSprite;
-
-        yield return Move(Vector3.left * moveAmount * 0.5f);
-        yield return Move(Vector3.right * moveAmount * 0.5f);
-
-        ResetToIdle();
-    }
-
-    private IEnumerator BuffAnimation()
-    {
-        spriteRenderer.sprite = buffSprite != null ? buffSprite : idleSprite;
-
-        transform.localScale = Vector3.one * 1.2f;
-        yield return new WaitForSeconds(duration);
+        transform.localScale = Vector3.one * 1.15f;
+        yield return new WaitForSeconds(0.15f);
         transform.localScale = Vector3.one;
-
-        ResetToIdle();
     }
 
     private IEnumerator Move(Vector3 offset)
@@ -85,7 +72,9 @@ public class CharacterVisualController : MonoBehaviour
         Vector3 start = transform.position;
         Vector3 target = start + offset;
 
+        float duration = 0.15f;
         float t = 0f;
+
         while (t < duration)
         {
             transform.position = Vector3.Lerp(start, target, t / duration);
@@ -96,9 +85,30 @@ public class CharacterVisualController : MonoBehaviour
         transform.position = target;
     }
 
-    private void ResetToIdle()
+    private IEnumerator Shake()
     {
-        transform.position = originalPosition;
+        float duration = 0.2f;
+        float magnitude = 0.1f;
+
+        Vector3 original = transform.position;
+
+        float t = 0f;
+
+        while (t < duration)
+        {
+            transform.position = original + Random.insideUnitSphere * magnitude;
+            transform.position = new Vector3(transform.position.x, original.y, original.z);
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = original;
+    }
+
+    private void ResetIdle()
+    {
         spriteRenderer.sprite = idleSprite;
+        transform.position = originalPosition;
     }
 }

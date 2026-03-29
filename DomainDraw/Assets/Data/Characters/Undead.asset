@@ -17,7 +17,10 @@ MonoBehaviour:
     enemies. Their attacks are powerful and can restore their own health, but their
     corrupting nature destabilises the domain
   portrait: {fileID: -2398033559624152426, guid: 6c7d278c7c9813f4bb87dbaba4e13fcd, type: 3}
-  battleSprite: {fileID: -2398033559624152426, guid: 6c7d278c7c9813f4bb87dbaba4e13fcd, type: 3}
+  player1Idle: {fileID: -2398033559624152426, guid: 6c7d278c7c9813f4bb87dbaba4e13fcd, type: 3}
+  player1AttackFrames: []
+  player2Idle: {fileID: 0}
+  player2AttackFrames: []
   cardPool:
   - {fileID: 11400000, guid: ff7d0e9a09c0c524fb9e0c358f7b20da, type: 2}
   - {fileID: 11400000, guid: edc7aa91410c7234ba5bac7c93c77b90, type: 2}

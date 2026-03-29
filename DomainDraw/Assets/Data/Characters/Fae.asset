@@ -17,7 +17,10 @@ MonoBehaviour:
     their enemies. They specialise in strong defensive abilities, reducing incoming
     damage and maintaining control of the battlefield
   portrait: {fileID: -1181094989415812406, guid: e2e7a5c8c6d92ad4ca1af49b3c1db99b, type: 3}
-  battleSprite: {fileID: -1181094989415812406, guid: e2e7a5c8c6d92ad4ca1af49b3c1db99b, type: 3}
+  player1Idle: {fileID: -1181094989415812406, guid: e2e7a5c8c6d92ad4ca1af49b3c1db99b, type: 3}
+  player1AttackFrames: []
+  player2Idle: {fileID: 0}
+  player2AttackFrames: []
   cardPool:
   - {fileID: 11400000, guid: ab72c09929e639947852fa5543936f44, type: 2}
   - {fileID: 11400000, guid: c7b41653085c28d499c5f4dfe6b6792f, type: 2}

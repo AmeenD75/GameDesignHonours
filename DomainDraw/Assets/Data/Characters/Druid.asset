@@ -17,7 +17,10 @@ MonoBehaviour:
     themselves. They excel in healing and domain stability, with abilities that can
     sustain themselves while even strengthening the land they fight for
   portrait: {fileID: -2630391095581519582, guid: 64fecbb36f81b8c4e9ba3087a02810db, type: 3}
-  battleSprite: {fileID: -2630391095581519582, guid: 64fecbb36f81b8c4e9ba3087a02810db, type: 3}
+  player1Idle: {fileID: -2630391095581519582, guid: 64fecbb36f81b8c4e9ba3087a02810db, type: 3}
+  player1AttackFrames: []
+  player2Idle: {fileID: 0}
+  player2AttackFrames: []
   cardPool:
   - {fileID: 11400000, guid: 0c089b1d84c1151499809b3f39247663, type: 2}
   - {fileID: 11400000, guid: 65ab836fcd1b598458f4c076c8c8c3dc, type: 2}
