@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,10 @@ public class GameManager : MonoBehaviour
     public PlayerState player1State = new PlayerState { playerName = "Player 1", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
     public PlayerState player2State = new PlayerState { playerName = "Player 2", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
 
+
+    [Header("Character Visuals")]
+    [SerializeField] private CharacterVisualController player1Character;
+    [SerializeField] private CharacterVisualController player2Character;
 
     [Header("Battle Stats")]
     public int terrainHP = 40;
@@ -62,14 +67,18 @@ public class GameManager : MonoBehaviour
         ApplySelectedRaces();
         ApplySelectedDecks();
         ApplySelectedDomain();
+        ApplyCharacterVisuals();
 
         player1State.maxHP = player1State.hp;
         player2State.maxHP = player2State.hp;
+
         cardSystem.DrawStartingHands(player1State, player2State);
         UpdateUI();
 
         waitingForTurnConfirm = true;
-        ShowTurnOverlay();
+        //ShowTurnOverlay();
+        StartCoroutine(DelayedTurnOverlay());
+
     }
 
     private void Update()
@@ -167,7 +176,13 @@ public class GameManager : MonoBehaviour
         selectedCard = null;
     }
 
+
     private void PlayCard(Card card)
+    {
+        StartCoroutine(PlayCardSequence(card));
+    }
+
+    private IEnumerator PlayCardSequence(Card card)
     {
         PlayerState currentPlayer = GetCurrentPlayer();
         PlayerState opponent = GetOpponentPlayer();
@@ -177,42 +192,52 @@ public class GameManager : MonoBehaviour
 
         AddBattleLog(currentPlayerName + " played " + card.Title + ".");
 
+        CharacterVisualController attacker = player1Turn ? player1Character : player2Character;
+        CharacterVisualController defender = player1Turn ? player2Character : player1Character;
+
+        if (card.Type == CardType.Attack && attacker != null)
+            yield return StartCoroutine(attacker.PlayAttack());
+
         if (card.DamageToEnemy > 0)
         {
             int dealt = ApplyDamage(opponent, opponentName, card.DamageToEnemy);
+
+            if (defender != null)
+                yield return StartCoroutine(defender.PlayHit());
+
             AddBattleLog(opponentName + " took " + dealt + " damage.");
         }
 
         if (card.HealSelf > 0)
         {
             currentPlayer.hp += card.HealSelf;
-            AddBattleLog(currentPlayerName + " healed " + card.HealSelf + " HP.");
-        }
 
-        if (card.SelfDamage > 0)
-        {
-            int selfDealt = ApplyDamage(currentPlayer, currentPlayerName, card.SelfDamage);
-            AddBattleLog(currentPlayerName + " took " + selfDealt + " self-damage.");
+            if (attacker != null)
+                yield return StartCoroutine(attacker.PlayBuff());
+
+            AddBattleLog(currentPlayerName + " healed " + card.HealSelf + " HP.");
         }
 
         if (card.BlockAmount > 0)
         {
             ApplyDefense(currentPlayer, card.BlockAmount);
-            AddBattleLog(currentPlayerName + " gained " + card.BlockAmount + " block for 2 turns.");
+
+            if (attacker != null)
+                yield return StartCoroutine(attacker.PlayBuff());
         }
 
-        if (card.TerrainDamage > 0)
+        if (card.TerrainDamage != 0)
         {
             terrainHP -= card.TerrainDamage;
-            AddBattleLog("Terrain took " + card.TerrainDamage + " damage.");
-        }
-        else if (card.TerrainDamage < 0)
-        {
-            terrainHP -= card.TerrainDamage;
-            AddBattleLog("Terrain was restored by " + (-card.TerrainDamage) + ".");
         }
 
         ClampValues();
+
+        yield return new WaitForSeconds(0.15f);
+        UpdateUI();
+
+        yield return new WaitForSeconds(0.3f);
+
         currentPlayer.hand.Remove(card);
 
         EndTurn();
@@ -307,7 +332,7 @@ public class GameManager : MonoBehaviour
 
             if (handView != null)
                 handView.ClearHand();
-
+            
             UpdateUI();
             return;
         }
@@ -315,11 +340,11 @@ public class GameManager : MonoBehaviour
         player1Turn = !player1Turn;
 
         cardSystem.RefillHand(GetCurrentPlayer());
-
         UpdateUI();
 
         waitingForTurnConfirm = true;
-        ShowTurnOverlay();
+        //ShowTurnOverlay();
+        StartCoroutine(DelayedTurnOverlay());
     }
 
     private void ClampValues()
@@ -503,6 +528,47 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
+    #region Character Sprite Setup
+    private void ApplyCharacterVisuals()
+    {
+        RaceData p1Race = MatchSetup.player1Race != null ? MatchSetup.player1Race : debugPlayer1Race;
+        RaceData p2Race = MatchSetup.player2Race != null ? MatchSetup.player2Race : debugPlayer2Race;
+
+        Debug.Log("MatchSetup.player1Race = " + (MatchSetup.player1Race != null ? MatchSetup.player1Race.raceName : "NULL"));
+        Debug.Log("MatchSetup.player2Race = " + (MatchSetup.player2Race != null ? MatchSetup.player2Race.raceName : "NULL"));
+
+        Debug.Log("Applied P1 race = " + (p1Race != null ? p1Race.raceName : "NULL"));
+        Debug.Log("Applied P2 race = " + (p2Race != null ? p2Race.raceName : "NULL"));
+
+        if (player1Character != null)
+            player1Character.Setup(p1Race, true);
+
+        if (player2Character != null)
+            player2Character.Setup(p2Race, false);
+    }
+
+
+    private void TriggerAnimation(CharacterVisualController character, CardType type)
+    {
+        if (character == null)
+            return;
+
+        switch (type)
+        {
+            case CardType.Attack:
+                character.PlayAttack();
+                break;
+
+            case CardType.Defense:
+            case CardType.Support:
+                character.PlayBuff();
+                break;
+        }
+    }
+
+
+    #endregion
+
     #region Game Over
     private void HandleGameOver(string message)
     {
@@ -518,6 +584,12 @@ public class GameManager : MonoBehaviour
 
         if (battleEndUI != null)
             battleEndUI.ShowEndScreen(message);
+    }
+
+    private IEnumerator DelayedTurnOverlay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ShowTurnOverlay();
     }
     #endregion
 }

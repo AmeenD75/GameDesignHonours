@@ -6,6 +6,8 @@ public class DeckBuildSettings : ScriptableObject
     [Header("Deck Size")]
     public int totalDeckSize = 15;
 
-    [Header("General Card Limits")]
-    public int maxPerType = 5;
+    [Header("Specific Card Limits")]
+    public int maxAttackCards = 5;
+    public int maxDefenseCards = 5;
+    public int maxSupportCards = 5;
 }

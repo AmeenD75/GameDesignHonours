@@ -13,8 +13,20 @@ MonoBehaviour:
   m_Name: Druid
   m_EditorClassIdentifier: Assembly-CSharp::RaceData
   raceName: Druid
-  description: Healing Based Fighter
-  portrait: {fileID: 1943730341622241386, guid: 615868900a9dca147b3b8d35262b5f4f, type: 3}
+  description: Guardians of nature, Druids harness life energy to heal and sustain
+    themselves. They excel in healing and domain stability, with abilities that can
+    sustain themselves while even strengthening the land they fight for
+  portrait: {fileID: -2630391095581519582, guid: 64fecbb36f81b8c4e9ba3087a02810db, type: 3}
+  player1Idle: {fileID: -2630391095581519582, guid: 64fecbb36f81b8c4e9ba3087a02810db, type: 3}
+  player1AttackFrames:
+  - {fileID: 8690697504320641652, guid: 7d20cf5c019f7aa4897d44491e91f2be, type: 3}
+  - {fileID: -8525230956039857966, guid: 7d20cf5c019f7aa4897d44491e91f2be, type: 3}
+  - {fileID: 2102212990470586277, guid: 7d20cf5c019f7aa4897d44491e91f2be, type: 3}
+  player2Idle: {fileID: -8528759495769332982, guid: fa70b560b963275489848cd49a7e9dfa, type: 3}
+  player2AttackFrames:
+  - {fileID: -8528759495769332982, guid: fa70b560b963275489848cd49a7e9dfa, type: 3}
+  - {fileID: 1793698238217785337, guid: fa70b560b963275489848cd49a7e9dfa, type: 3}
+  - {fileID: 3067344226307663328, guid: fa70b560b963275489848cd49a7e9dfa, type: 3}
   cardPool:
   - {fileID: 11400000, guid: 0c089b1d84c1151499809b3f39247663, type: 2}
   - {fileID: 11400000, guid: 65ab836fcd1b598458f4c076c8c8c3dc, type: 2}

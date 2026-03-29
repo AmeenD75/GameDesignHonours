@@ -13,8 +13,26 @@ MonoBehaviour:
   m_Name: Undead
   m_EditorClassIdentifier: Assembly-CSharp::RaceData
   raceName: Undead
-  description: PlaceHolder
-  portrait: {fileID: -8730811532367957942, guid: 5a7a2b7b97d995f459a5209bc1d2f99a, type: 3}
+  description: Sustained by dark magic, the Undead thrive on draining life from their
+    enemies. Their attacks are powerful and can restore their own health, but their
+    corrupting nature destabilises the domain
+  portrait: {fileID: -2398033559624152426, guid: 6c7d278c7c9813f4bb87dbaba4e13fcd, type: 3}
+  player1Idle: {fileID: -2398033559624152426, guid: 6c7d278c7c9813f4bb87dbaba4e13fcd, type: 3}
+  player1AttackFrames:
+  - {fileID: -4058637267456533425, guid: 5c56f41b08e134942a25a818be30c629, type: 3}
+  - {fileID: 2920369275431262972, guid: 5c56f41b08e134942a25a818be30c629, type: 3}
+  - {fileID: -5792241503916383292, guid: 5c56f41b08e134942a25a818be30c629, type: 3}
+  - {fileID: 7020932928172331988, guid: 5c56f41b08e134942a25a818be30c629, type: 3}
+  - {fileID: 3146393091184618022, guid: 5c56f41b08e134942a25a818be30c629, type: 3}
+  - {fileID: 7974903572560827580, guid: 5c56f41b08e134942a25a818be30c629, type: 3}
+  player2Idle: {fileID: 193061973131297916, guid: 76ae6652a4c7c744a8e0da17b29ec229, type: 3}
+  player2AttackFrames:
+  - {fileID: 193061973131297916, guid: 76ae6652a4c7c744a8e0da17b29ec229, type: 3}
+  - {fileID: 4273445280329382443, guid: 76ae6652a4c7c744a8e0da17b29ec229, type: 3}
+  - {fileID: 7946855715155773914, guid: 76ae6652a4c7c744a8e0da17b29ec229, type: 3}
+  - {fileID: -702278234721402530, guid: 76ae6652a4c7c744a8e0da17b29ec229, type: 3}
+  - {fileID: -8916513184968139396, guid: 76ae6652a4c7c744a8e0da17b29ec229, type: 3}
+  - {fileID: -7498930154102118034, guid: 76ae6652a4c7c744a8e0da17b29ec229, type: 3}
   cardPool:
   - {fileID: 11400000, guid: ff7d0e9a09c0c524fb9e0c358f7b20da, type: 2}
   - {fileID: 11400000, guid: edc7aa91410c7234ba5bac7c93c77b90, type: 2}

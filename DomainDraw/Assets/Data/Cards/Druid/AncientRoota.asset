@@ -22,4 +22,4 @@ MonoBehaviour:
   <HealSelf>k__BackingField: 0
   <TerrainDamage>k__BackingField: -5
   <SelfDamage>k__BackingField: 0
-  <BlockAmount>k__BackingField: 4
+  <BlockAmount>k__BackingField: 5

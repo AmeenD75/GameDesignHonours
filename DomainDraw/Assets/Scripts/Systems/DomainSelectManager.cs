@@ -18,6 +18,7 @@ public class DomainSelectManager : MonoBehaviour
 
     [Header("Scene Flow")]
     public string nextSceneName = "Battle1";
+    public string previousScene = "DeckModeSelectScreen";
 
     private int currentDomainIndex = 0;
 
@@ -107,7 +108,7 @@ public class DomainSelectManager : MonoBehaviour
         {
             string p1 = MatchSetup.player1Race != null ? MatchSetup.player1Race.raceName : "None";
             string p2 = MatchSetup.player2Race != null ? MatchSetup.player2Race.raceName : "None";
-            infoText.text = "Player 1: " + p1 + "\nPlayer 2: " + p2;
+            infoText.text = "Player 1: " + p1 + "\n\n\nPlayer 2: " + p2;
         }
 
         if (domainImage != null)
@@ -115,5 +116,11 @@ public class DomainSelectManager : MonoBehaviour
             domainImage.sprite = domain.backgroundImage;
             domainImage.enabled = domain.backgroundImage != null;
         }
+    }
+
+    public void ReturnToDeckBuilder()
+    {
+        MatchSetup.selectedDomain = null;
+        SceneManager.LoadScene(previousScene);
     }
 }

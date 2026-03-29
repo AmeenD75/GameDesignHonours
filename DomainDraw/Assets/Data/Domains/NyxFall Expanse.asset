@@ -15,6 +15,6 @@ MonoBehaviour:
   domainName: NyxFall Expanse
   description: The StarGuide mysteriously vanished. The Expanse now selects its ruler
     through trial by mind and body. It rewards cleverness but brute force is always
-    welcome.
-  backgroundImage: {fileID: 21300000, guid: ecd17311a1b6e844bb4860dc8e4d5052, type: 3}
-  startingTerrainHP: 100
+    welcome
+  backgroundImage: {fileID: -2373135233118318482, guid: 14c4ede84fc529f4696c9ed14c10a4e9, type: 3}
+  startingTerrainHP: 75
