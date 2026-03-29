@@ -5,6 +5,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [Header("Scene Flow")]
     public string characterSelectSceneName = "CharacterSelection";
+    public string helpSceneName = "HelpScene";
 
     public void PlayGame()
     {
@@ -19,5 +20,10 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log("Quit Game");
 
         Application.Quit();
+    }
+
+    public void OpenHelp()
+    {
+        SceneManager.LoadScene(helpSceneName);
     }
 }

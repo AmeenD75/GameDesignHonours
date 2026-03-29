@@ -107,7 +107,7 @@ public class DomainSelectManager : MonoBehaviour
         {
             string p1 = MatchSetup.player1Race != null ? MatchSetup.player1Race.raceName : "None";
             string p2 = MatchSetup.player2Race != null ? MatchSetup.player2Race.raceName : "None";
-            infoText.text = "Player 1: " + p1 + "\nPlayer 2: " + p2;
+            infoText.text = "Player 1: " + p1 + "\n\n\nPlayer 2: " + p2;
         }
 
         if (domainImage != null)
