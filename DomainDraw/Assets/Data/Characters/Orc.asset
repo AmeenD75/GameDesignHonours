@@ -17,8 +17,13 @@ MonoBehaviour:
     combat. They excel at dealing heavy damage quickly, but their brute force can
     be reckless and difficult to control
   portrait: {fileID: -4578126311359895156, guid: 7bf6a9e71cc86934cac7678b5a4dfdca, type: 3}
-  player1Idle: {fileID: 0}
-  player1AttackFrames: []
+  player1Idle: {fileID: 8540299781521963555, guid: 62852421d208a114e852df1eb9e9453f, type: 3}
+  player1AttackFrames:
+  - {fileID: 8540299781521963555, guid: 62852421d208a114e852df1eb9e9453f, type: 3}
+  - {fileID: 7141050199176337267, guid: 62852421d208a114e852df1eb9e9453f, type: 3}
+  - {fileID: -5072686117261231364, guid: 62852421d208a114e852df1eb9e9453f, type: 3}
+  - {fileID: 997196203000928263, guid: 62852421d208a114e852df1eb9e9453f, type: 3}
+  - {fileID: 3545218722926132719, guid: 62852421d208a114e852df1eb9e9453f, type: 3}
   player2Idle: {fileID: -4578126311359895156, guid: 7bf6a9e71cc86934cac7678b5a4dfdca, type: 3}
   player2AttackFrames:
   - {fileID: 5772848838537506035, guid: 469feca103e97274d9652682105bffa4, type: 3}

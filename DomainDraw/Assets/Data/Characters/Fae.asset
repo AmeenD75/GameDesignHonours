@@ -18,9 +18,21 @@ MonoBehaviour:
     damage and maintaining control of the battlefield
   portrait: {fileID: -1181094989415812406, guid: e2e7a5c8c6d92ad4ca1af49b3c1db99b, type: 3}
   player1Idle: {fileID: -1181094989415812406, guid: e2e7a5c8c6d92ad4ca1af49b3c1db99b, type: 3}
-  player1AttackFrames: []
-  player2Idle: {fileID: 0}
-  player2AttackFrames: []
+  player1AttackFrames:
+  - {fileID: -4283544862317316884, guid: 72a1acde4c4b83145aea9fb3e9951868, type: 3}
+  - {fileID: -232310604964425584, guid: 72a1acde4c4b83145aea9fb3e9951868, type: 3}
+  - {fileID: 1839564746983614017, guid: 72a1acde4c4b83145aea9fb3e9951868, type: 3}
+  - {fileID: 6871228948192338105, guid: 72a1acde4c4b83145aea9fb3e9951868, type: 3}
+  - {fileID: 4345640462587750446, guid: 72a1acde4c4b83145aea9fb3e9951868, type: 3}
+  - {fileID: -8595226249367557715, guid: 72a1acde4c4b83145aea9fb3e9951868, type: 3}
+  player2Idle: {fileID: 933174161367753591, guid: 8382c7a431a18ef44b13ee353aeaeaa3, type: 3}
+  player2AttackFrames:
+  - {fileID: 933174161367753591, guid: 8382c7a431a18ef44b13ee353aeaeaa3, type: 3}
+  - {fileID: 5588885857160717876, guid: 8382c7a431a18ef44b13ee353aeaeaa3, type: 3}
+  - {fileID: -2233775731715395166, guid: 8382c7a431a18ef44b13ee353aeaeaa3, type: 3}
+  - {fileID: -7099506389348725590, guid: 8382c7a431a18ef44b13ee353aeaeaa3, type: 3}
+  - {fileID: 6818563022237963309, guid: 8382c7a431a18ef44b13ee353aeaeaa3, type: 3}
+  - {fileID: -16475802309297378, guid: 8382c7a431a18ef44b13ee353aeaeaa3, type: 3}
   cardPool:
   - {fileID: 11400000, guid: ab72c09929e639947852fa5543936f44, type: 2}
   - {fileID: 11400000, guid: c7b41653085c28d499c5f4dfe6b6792f, type: 2}
