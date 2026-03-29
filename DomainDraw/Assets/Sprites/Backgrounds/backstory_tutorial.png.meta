@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 14c4ede84fc529f4696c9ed14c10a4e9
+guid: 70bb010088a911a46b6a8d22c8146f45
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2373135233118318482
-    second: nyxfallfinal_0
+      213: -5228365666652209722
+    second: backstory_tutorial_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,11 +96,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nyxfallfinal_0
+      name: backstory_tutorial_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e60d402341ee01fd0800000000000000
-      internalID: -2373135233118318482
+      spriteID: 6cdb853902d1177b0800000000000000
+      internalID: -5228365666652209722
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      nyxfallfinal_0: -2373135233118318482
+      backstory_tutorial_0: -5228365666652209722
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

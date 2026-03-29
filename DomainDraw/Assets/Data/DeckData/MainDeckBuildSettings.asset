@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: MainDeckBuildSettings
   m_EditorClassIdentifier: Assembly-CSharp::DeckBuildSettings
   totalDeckSize: 15
-  maxPerType: 5
+  maxAttackCards: 8
+  maxDefenseCards: 4
+  maxSupportCards: 3
