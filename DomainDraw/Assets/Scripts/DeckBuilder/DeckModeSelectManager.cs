@@ -149,14 +149,13 @@ public class DeckModeSelectManager : MonoBehaviour
         {
             RaceData race = choosingPlayer1 ? MatchSetup.player1Race : MatchSetup.player2Race;
             string raceName = race != null ? race.raceName : "No Race";
-
             infoText.text =
                 "Race: " + raceName + "\n" +
                 "Each deck has 15 cards total.\n" +
                 "5 race cards are locked in.\n" +
                 "The remaining 10 come from the general library.\n" +
                 "Preset auto-builds the deck.\n" +
-                "Build Own lets you choose the remaining cards yourself.";
+                "Build Deck lets you choose the remaining cards yourself.";
         }
     }
 }
