@@ -660,6 +660,11 @@ public class GameManager : MonoBehaviour
     {
         gameOver = true;
 
+        if (battleMusicSource != null)
+        {
+            battleMusicSource.Stop();
+        }
+
         battleUI.SetTurnText(message);
         battleUI.HideTurnOverlay();
 
@@ -669,7 +674,11 @@ public class GameManager : MonoBehaviour
         UpdateUI();
 
         if (battleEndUI != null)
-            battleEndUI.ShowEndScreen(message);
+        {
+            bool isWin = message.Contains("Wins", System.StringComparison.OrdinalIgnoreCase);
+            battleEndUI.ShowEndScreen(message, isWin);
+        }
+
     }
 
     private IEnumerator DelayedTurnOverlay()
