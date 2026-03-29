@@ -17,4 +17,4 @@ MonoBehaviour:
     on a pedestal, looming over all else. Only a ruler who can dominate without burning
     the land to ash will be accepted and followed into the future
   backgroundImage: {fileID: -2361092091947223377, guid: aa8d9791c1fbc544fa02de66c6c993f0, type: 3}
-  startingTerrainHP: 30
+  startingTerrainHP: 40

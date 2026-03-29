@@ -16,4 +16,4 @@ MonoBehaviour:
   description: The Hollow council once ruled together. They are now divided and seek
     a single protector who understands that healing one wound may open another
   backgroundImage: {fileID: 3416409148438919300, guid: b277d75ebc5e156479a9e9b9c9e74d5e, type: 3}
-  startingTerrainHP: 45
+  startingTerrainHP: 55
