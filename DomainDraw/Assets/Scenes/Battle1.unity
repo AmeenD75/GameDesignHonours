@@ -211,6 +211,131 @@ Transform:
   - {fileID: 637739017}
   m_Father: {fileID: 252903459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &152131158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 152131159}
+  - component: {fileID: 152131161}
+  - component: {fileID: 152131160}
+  m_Layer: 0
+  m_Name: Dice
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &152131159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152131158}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -287.99, y: -146.53, z: 0}
+  m_LocalScale: {x: 3.9625, y: 3.6856, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1938679263}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152131160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152131158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8382d653e346e44af00bafcc483c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DiceController
+  spriteRenderer: {fileID: 152131161}
+  spinFrames:
+  - {fileID: 39516445742236537, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: 2376305099863235458, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: 1813239885723335896, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: -7464760887336577109, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: -8866378825118310145, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: -3287765887320952711, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: -2581247542019846736, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: 8680914486856551693, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  diceFaces:
+  - {fileID: 39516445742236537, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: 2376305099863235458, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: 1813239885723335896, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: -7464760887336577109, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: -8866378825118310145, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: -3287765887320952711, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: -2581247542019846736, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  - {fileID: 8680914486856551693, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  frameRate: 0.05
+  spinDuration: 1.2
+--- !u!212 &152131161
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152131158}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 39516445742236537, guid: c233220d7c8797e4fbdb0e1832ddb0ff, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.32, y: 0.36}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
 --- !u!1 &152769697
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,6 +1452,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8f03c416d5de06c4f82af7c48cf29fc4, type: 2}
     - {fileID: 11400000, guid: cf4467b5200d2f745ac6e761dc4cd461, type: 2}
     - {fileID: 11400000, guid: 65ab836fcd1b598458f4c076c8c8c3dc, type: 2}
+  diceController: {fileID: 152131160}
   player1Character: {fileID: 900685925}
   player2Character: {fileID: 1655475386}
   terrainHP: 100
@@ -2013,6 +2139,10 @@ PrefabInstance:
     - target: {fileID: 3454701865926279192, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_Color.r
       value: 0.18431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648471081567792028, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3872432406067198497, guid: 2b928fd209303824a8f96cc48efe3823, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3048,6 +3178,7 @@ Transform:
   - {fileID: 252892580}
   - {fileID: 900685924}
   - {fileID: 1655475385}
+  - {fileID: 152131159}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1967469883 stripped
