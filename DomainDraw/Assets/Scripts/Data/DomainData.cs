@@ -13,4 +13,7 @@ public class DomainData : ScriptableObject
 
     [Header("Battle Settings")]
     public int startingTerrainHP = 40;
+
+    [Header("Audio")]
+    public AudioClip battleMusic; 
 }

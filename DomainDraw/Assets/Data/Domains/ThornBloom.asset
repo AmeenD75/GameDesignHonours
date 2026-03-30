@@ -17,3 +17,4 @@ MonoBehaviour:
     a single protector who understands that healing one wound may open another
   backgroundImage: {fileID: 3416409148438919300, guid: b277d75ebc5e156479a9e9b9c9e74d5e, type: 3}
   startingTerrainHP: 55
+  battleMusic: {fileID: 8300000, guid: 15bfd7f292945954eb456d4bc4678568, type: 3}

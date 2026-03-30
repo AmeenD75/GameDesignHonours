@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public PlayerState player1State = new PlayerState { playerName = "Player 1", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
     public PlayerState player2State = new PlayerState { playerName = "Player 2", hp = 50, timeRemaining = 120f, diceUsesRemaining = 3 };
 
+    [Header("Dice")]
+    [SerializeField] private DiceController diceController;
 
     [Header("Character Visuals")]
     [SerializeField] private CharacterVisualController player1Character;
@@ -47,6 +49,9 @@ public class GameManager : MonoBehaviour
     [Header("Hand View")]
     public HandView handView;
     public Transform cardSpawnPoint;
+
+    [Header("Audio")]
+    public AudioSource battleMusicSource;
 
     private CardView selectedCard;
 
@@ -218,6 +223,16 @@ public class GameManager : MonoBehaviour
             AddBattleLog(currentPlayerName + " healed " + card.HealSelf + " HP.");
         }
 
+        if (card.SelfDamage > 0)
+        {
+            int selfDealt = ApplyDamage(currentPlayer, currentPlayerName, card.SelfDamage);
+
+            if (attacker != null)
+                yield return StartCoroutine(attacker.PlayHit());
+
+            AddBattleLog(currentPlayerName + " took " + selfDealt + " self-damage.");
+        }
+
         if (card.BlockAmount > 0)
         {
             ApplyDefense(currentPlayer, card.BlockAmount);
@@ -225,6 +240,8 @@ public class GameManager : MonoBehaviour
             if (attacker != null)
                 yield return StartCoroutine(attacker.PlayBuff());
         }
+
+       
 
         if (card.TerrainDamage != 0)
         {
@@ -245,11 +262,71 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Actions
+    //public void RollDice()
+    //{
+    //    if (gameOver || waitingForTurnConfirm)
+    //        return;
+
+    //    PlayerState currentPlayer = GetCurrentPlayer();
+    //    PlayerState opponent = GetOpponentPlayer();
+
+    //    string currentPlayerName = player1Turn ? "Player 1" : "Player 2";
+    //    string opponentName = player1Turn ? "Player 2" : "Player 1";
+
+    //    if (currentPlayer.diceUsesRemaining <= 0)
+    //    {
+    //        AddBattleLog(currentPlayerName + " has no dice rolls remaining.");
+    //        return;
+    //    }
+
+    //    if (selectedCard == null)
+    //    {
+    //        AddBattleLog(currentPlayerName + " must select a card to swap before rolling dice.");
+    //        return;
+    //    }
+
+    //    string swappedCardName = selectedCard.Card.Title;
+
+    //    bool replaced = cardSystem.ReplaceCardInHand(currentPlayer, selectedCard.Card);
+    //    if (!replaced)
+    //        return;
+
+    //    currentPlayer.diceUsesRemaining--;
+
+    //    selectedCard.SetSelected(false);
+    //    selectedCard = null;
+
+    //    AddBattleLog(currentPlayerName + " swapped " + swappedCardName + " and rolled the dice.");
+
+    //    int roll = Random.Range(1, 9);
+    //    battleUI.SetDiceRollText(roll);
+
+    //    if (roll <= 3)
+    //    {
+    //        int dealt = ApplyDamage(opponent, opponentName, 8);
+    //        AddBattleLog(currentPlayerName + " rolled " + roll + " and dealt " + dealt + " damage to " + opponentName + ".");
+    //    }
+    //    else
+    //    {
+    //        int dealt = ApplyDamage(currentPlayer, currentPlayerName, 8);
+    //        AddBattleLog(currentPlayerName + " rolled " + roll + " and took " + dealt + " damage.");
+    //    }
+
+    //    ClampValues();
+    //    UpdateUI();
+    //    EndTurn();
+    //}
+
     public void RollDice()
     {
         if (gameOver || waitingForTurnConfirm)
             return;
 
+        StartCoroutine(RollDiceSequence());
+    }
+
+    private IEnumerator RollDiceSequence()
+    {
         PlayerState currentPlayer = GetCurrentPlayer();
         PlayerState opponent = GetOpponentPlayer();
 
@@ -259,20 +336,20 @@ public class GameManager : MonoBehaviour
         if (currentPlayer.diceUsesRemaining <= 0)
         {
             AddBattleLog(currentPlayerName + " has no dice rolls remaining.");
-            return;
+            yield break;
         }
 
         if (selectedCard == null)
         {
             AddBattleLog(currentPlayerName + " must select a card to swap before rolling dice.");
-            return;
+            yield break;
         }
 
         string swappedCardName = selectedCard.Card.Title;
 
         bool replaced = cardSystem.ReplaceCardInHand(currentPlayer, selectedCard.Card);
         if (!replaced)
-            return;
+            yield break;
 
         currentPlayer.diceUsesRemaining--;
 
@@ -281,22 +358,35 @@ public class GameManager : MonoBehaviour
 
         AddBattleLog(currentPlayerName + " swapped " + swappedCardName + " and rolled the dice.");
 
-        int roll = Random.Range(1, 7);
+        int roll = 0;
+        bool finished = false;
+
+        yield return StartCoroutine(diceController.RollDice((result) =>
+        {
+            roll = result;
+            finished = true;
+        }));
+
         battleUI.SetDiceRollText(roll);
 
-        if (roll <= 3)
+        yield return new WaitForSeconds(0.25f);
+
+        if (roll <= 4)
         {
-            int dealt = ApplyDamage(opponent, opponentName, 12);
-            AddBattleLog(currentPlayerName + " rolled " + roll + " and dealt " + dealt + " damage to " + opponentName + ".");
+            int dealt = ApplyDamage(currentPlayer, currentPlayerName, 8);
+            AddBattleLog(currentPlayerName + " rolled " + roll + " and took " + dealt + " damage.");
         }
         else
-        {
-            int dealt = ApplyDamage(currentPlayer, currentPlayerName, 12);
-            AddBattleLog(currentPlayerName + " rolled " + roll + " and took " + dealt + " damage.");
+        { 
+            int dealt = ApplyDamage(opponent, opponentName, 8);
+            AddBattleLog(currentPlayerName + " rolled " + roll + " and dealt " + dealt + " damage to " + opponentName + ".");
         }
 
         ClampValues();
         UpdateUI();
+
+        yield return new WaitForSeconds(0.4f);
+
         EndTurn();
     }
 
@@ -510,6 +600,14 @@ public class GameManager : MonoBehaviour
 
             if (battleBackgroundRenderer != null)
                 battleBackgroundRenderer.sprite = domain.backgroundImage;
+
+            if (battleMusicSource != null && domain.battleMusic != null)
+            {
+                battleMusicSource.clip = domain.battleMusic;
+                battleMusicSource.loop = true;
+                battleMusicSource.Play();
+            }
+
         }
         else
         {
@@ -574,6 +672,11 @@ public class GameManager : MonoBehaviour
     {
         gameOver = true;
 
+        if (battleMusicSource != null)
+        {
+            battleMusicSource.Stop();
+        }
+
         battleUI.SetTurnText(message);
         battleUI.HideTurnOverlay();
 
@@ -583,7 +686,11 @@ public class GameManager : MonoBehaviour
         UpdateUI();
 
         if (battleEndUI != null)
-            battleEndUI.ShowEndScreen(message);
+        {
+            bool isWin = message.Contains("Wins", System.StringComparison.OrdinalIgnoreCase);
+            battleEndUI.ShowEndScreen(message, isWin);
+        }
+
     }
 
     private IEnumerator DelayedTurnOverlay()

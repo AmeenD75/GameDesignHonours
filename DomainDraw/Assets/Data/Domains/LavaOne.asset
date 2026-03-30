@@ -18,3 +18,4 @@ MonoBehaviour:
     the land to ash will be accepted and followed into the future
   backgroundImage: {fileID: -2361092091947223377, guid: aa8d9791c1fbc544fa02de66c6c993f0, type: 3}
   startingTerrainHP: 40
+  battleMusic: {fileID: 8300000, guid: c43db515e4066db41aa2dc5cee99253d, type: 3}
