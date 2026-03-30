@@ -223,6 +223,16 @@ public class GameManager : MonoBehaviour
             AddBattleLog(currentPlayerName + " healed " + card.HealSelf + " HP.");
         }
 
+        if (card.SelfDamage > 0)
+        {
+            int selfDealt = ApplyDamage(currentPlayer, currentPlayerName, card.SelfDamage);
+
+            if (attacker != null)
+                yield return StartCoroutine(attacker.PlayHit());
+
+            AddBattleLog(currentPlayerName + " took " + selfDealt + " self-damage.");
+        }
+
         if (card.BlockAmount > 0)
         {
             ApplyDefense(currentPlayer, card.BlockAmount);
@@ -230,6 +240,8 @@ public class GameManager : MonoBehaviour
             if (attacker != null)
                 yield return StartCoroutine(attacker.PlayBuff());
         }
+
+       
 
         if (card.TerrainDamage != 0)
         {
