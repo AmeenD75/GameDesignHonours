@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
     public HandView handView;
     public Transform cardSpawnPoint;
 
+    [Header("Audio")]
+    public AudioSource battleMusicSource;
+
     private CardView selectedCard;
 
     #region Unity Messages
@@ -585,6 +588,14 @@ public class GameManager : MonoBehaviour
 
             if (battleBackgroundRenderer != null)
                 battleBackgroundRenderer.sprite = domain.backgroundImage;
+
+            if (battleMusicSource != null && domain.battleMusic != null)
+            {
+                battleMusicSource.clip = domain.battleMusic;
+                battleMusicSource.loop = true;
+                battleMusicSource.Play();
+            }
+
         }
         else
         {
@@ -649,6 +660,11 @@ public class GameManager : MonoBehaviour
     {
         gameOver = true;
 
+        if (battleMusicSource != null)
+        {
+            battleMusicSource.Stop();
+        }
+
         battleUI.SetTurnText(message);
         battleUI.HideTurnOverlay();
 
@@ -658,7 +674,11 @@ public class GameManager : MonoBehaviour
         UpdateUI();
 
         if (battleEndUI != null)
-            battleEndUI.ShowEndScreen(message);
+        {
+            bool isWin = message.Contains("Wins", System.StringComparison.OrdinalIgnoreCase);
+            battleEndUI.ShowEndScreen(message, isWin);
+        }
+
     }
 
     private IEnumerator DelayedTurnOverlay()

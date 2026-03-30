@@ -18,3 +18,4 @@ MonoBehaviour:
     welcome
   backgroundImage: {fileID: -2373135233118318482, guid: 14c4ede84fc529f4696c9ed14c10a4e9, type: 3}
   startingTerrainHP: 75
+  battleMusic: {fileID: 8300000, guid: 521f9129b88081c4c950492a5e1c2d56, type: 3}
