@@ -482,7 +482,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 193924978}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120572059}
+        m_TargetAssemblyTypeName: HelpTabManager, Assembly-CSharp
+        m_MethodName: SwitchTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &193924978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,7 +687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &579678293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -715,7 +727,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "Outcome Conditions\r\n- Reduce your Opponent HP to 0 -> you become the
+    champion\r\n- If Domain HP reaches 0 -> both players lose \r\n- If your timer
+    reaches 0 -> you lose\r\n- If you choose to forfeit -> you lose \r\nA true ruler
+    must balance power with control\r\nHealth System \r\n- Player HP -> Your survival
+    \r\n- Domain HP -> The stability of the land \r\nChoose your actions carefully,
+    maintain balance at all times to rise on top. \r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -742,8 +759,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 19
+  m_fontSizeBase: 19
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -952,7 +969,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 732288175}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120572059}
+        m_TargetAssemblyTypeName: HelpTabManager, Assembly-CSharp
+        m_MethodName: SwitchTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &732288175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,7 +1311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1033407201
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1322,7 +1351,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "Choose the domain you wish to battle for.\nThe domains and descriptions
+    are visible on the domain selection screen, select one by using the \u201Cnext\u201D,
+    and \u201Cprevious\u201D buttons to view the domains and once decided, select
+    \u201CChoose Domain\u201D button. The Domains are: \r\n- Nyxfall expanse : level
+    = easy, domain HP = 75\r\n- ThornBloom Hollow: level = medium, domain HP = 55\r\n-
+    ScorchVeil Reach: level = hard, domain HP = 40\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1484,7 +1518,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1054793202}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120572059}
+        m_TargetAssemblyTypeName: HelpTabManager, Assembly-CSharp
+        m_MethodName: SwitchTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1054793202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1803,6 +1849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1120572058}
   - component: {fileID: 1120572057}
+  - component: {fileID: 1120572059}
   m_Layer: 0
   m_Name: HelpSceneManager
   m_TagString: Untagged
@@ -1838,6 +1885,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1120572059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120572056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465bdf665997d5044894a3eb1a353f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HelpTabManager
+  pages:
+  - {fileID: 1994130071}
+  - {fileID: 1033407200}
+  - {fileID: 2135852285}
+  - {fileID: 1985948398}
+  - {fileID: 579678292}
+  tabButtons:
+  - {fileID: 1685285657}
+  - {fileID: 732288174}
+  - {fileID: 1979320055}
+  - {fileID: 1054793201}
+  - {fileID: 193924977}
+  activeTabColor: {r: 1, g: 1, b: 1, a: 1}
+  inactiveTabColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &1163185135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,7 +2861,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1685285658}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120572059}
+        m_TargetAssemblyTypeName: HelpTabManager, Assembly-CSharp
+        m_MethodName: SwitchTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1685285658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3243,7 +3328,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1979320056}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1120572059}
+        m_TargetAssemblyTypeName: HelpTabManager, Assembly-CSharp
+        m_MethodName: SwitchTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1979320056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3299,7 +3396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1985948399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3339,7 +3436,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "The battle is turn-based. On your turn, you will: \r\n- Receive 3 cards
+    randomly from your deck\r\n- Choose 1 action:  \n=> play a card (click on card
+    and select \u201CPlay Card\u201D button). The card effect will be executed\r\n=>roll
+    the dice (select a card you would like to discard, then select \u201CDice Roll\u201D
+    button). The dice roll gives you a new card but also deals damage. Damage to
+    yourself if your roll is less than 5 and damage to enemy for roll 5 and up.\r\n=>Forfeit
+    the battle (select the \u201CForfeit\u201D button, automatically lose)\r\n- 
+    After your turn, you will be prompted to pass the device to you opponent for
+    their turn\r\nTime Constraints:\r\nEach player has a limited time allowed to
+    make decisions (countdown timer displayed on top of screen under respective HP
+    bars). Once your time runs out, you lose the battle\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3366,8 +3473,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3436,7 +3543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1994130072
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3477,9 +3584,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\n- Each player selects a character species \n- When player 1 picks a
-    character, \r\n- Every character comes with 5 unique cards\r\n- These cards are
-    more powerful than the general pool cards, however they have both positive and
-    negative effects\r\n"
+    character, player 2 will have to pick from the remainder. \r\n- Every character
+    comes with 5 unique cards\r\n- These cards are more powerful than the general
+    pool cards, however they have both positive and negative effects\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3731,7 +3838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2135852286
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3771,7 +3878,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "Each player builds a deck of 15 cards; there are two options to do so:\r\n-
+    First = choose to be randomly given 10 cards from the general card pool (select
+    the \u201CPreset\u201D button) \r\n- Second = choose the build deck button.\nPick
+    the exact cards you desire. \nLeft click on the card to view its description\nRight
+    click to select the card\nRemove a card by clicking on its title in the deck
+    preview panel on the right of the screen\nAttack Cards: 8; Defense: 4; Support:
+    3\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3798,8 +3911,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 19.83
+  m_fontSizeBase: 19.83
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

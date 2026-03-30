@@ -7,9 +7,10 @@ public class MainMenuManager : MonoBehaviour
     public string backstoryScene = "Backstory";
     public string helpSceneName = "HelpScene";
 
+    public string creditsSceneName = "CreditsScene";
     //public PersistentMusic persistentMusic;
 
-   private void Start()
+    private void Start()
    {
         PersistentMusic.PlayMusic();
     }
@@ -32,6 +33,11 @@ public class MainMenuManager : MonoBehaviour
     public void OpenHelp()
     {
         SceneManager.LoadScene(helpSceneName);
+    }
+
+    public void showCredits() 
+    {
+        SceneManager.LoadScene(creditsSceneName);
     }
 
 }
