@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Backstory.unity
     guid: 19c1a6bed33f55740843626380352332
   - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: f254139022b55c947b5dcc00ee8c4237
+  - enabled: 1
     path: Assets/Scenes/HelpScene.unity
     guid: 98858f3486a77a4409aa8b263c1d93e6
   - enabled: 1
