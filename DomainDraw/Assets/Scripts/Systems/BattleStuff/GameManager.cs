@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public bool player1Turn = true;
     private bool gameOver = false;
     private bool waitingForTurnConfirm = false;
+    public bool isAnimationPlaying = false;
 
     [Header("Systems")]
     public BattleUIController battleUI;
@@ -189,6 +190,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PlayCardSequence(Card card)
     {
+        isAnimationPlaying = true;
+
         PlayerState currentPlayer = GetCurrentPlayer();
         PlayerState opponent = GetOpponentPlayer();
 
@@ -257,6 +260,7 @@ public class GameManager : MonoBehaviour
 
         currentPlayer.hand.Remove(card);
 
+        isAnimationPlaying = false;
         EndTurn();
     }
     #endregion
@@ -327,6 +331,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RollDiceSequence()
     {
+
+        isAnimationPlaying = true;
         PlayerState currentPlayer = GetCurrentPlayer();
         PlayerState opponent = GetOpponentPlayer();
 
@@ -387,6 +393,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
+        isAnimationPlaying = false;
         EndTurn();
     }
 
