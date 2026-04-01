@@ -6,13 +6,21 @@ public class CardHoverRaycaster : MonoBehaviour
 {
     private CardView current;
     
-
     void Update()
     {
         if (Camera.main == null || Mouse.current == null) return;
 
+        if (GameManager.Instance != null && (GameManager.Instance.isAnimationPlaying))
+        {
+      
+            if (current != null)
+            {
+                current.HoverExit();
+                current = null;
+            }
+            return;
+        }
 
-        // IMPORTANT: ignore clicks if mouse is over UI
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
         {
             if (current != null)
