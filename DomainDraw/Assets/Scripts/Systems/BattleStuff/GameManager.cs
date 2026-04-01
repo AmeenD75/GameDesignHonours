@@ -365,12 +365,10 @@ public class GameManager : MonoBehaviour
         AddBattleLog(currentPlayerName + " swapped " + swappedCardName + " and rolled the dice.");
 
         int roll = 0;
-        bool finished = false;
 
         yield return StartCoroutine(diceController.RollDice((result) =>
         {
             roll = result;
-            finished = true;
         }));
 
         battleUI.SetDiceRollText(roll);
